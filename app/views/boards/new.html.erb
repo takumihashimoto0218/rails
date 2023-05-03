@@ -1,0 +1,17 @@
+<%= form_with model: @board do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= f.fields_for :lists do |list| %>
+    <%= list.label :title %>
+    <%= list.text_field :title %>
+    <%= list.fields_for :tasks do |task| %>
+      <%= task.label :title %>
+      <%= task.text_area :title %>
+      <%= task.label :body %>
+      <%= task.text_area :body %>
+    <% end %>
+  <% end %>
+  <%= f.submit 'ボードを作成する' %>
+<% end %>
