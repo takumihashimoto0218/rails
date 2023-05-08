@@ -1,1 +1,17 @@
-a
+<h1>ボード一覧(public)</h1>
+<% @boards.each do |board| %>
+  <h4>ボードタイトル<h4>
+  <%= board.title %>
+  <h4>ボード詳細<h4>
+  <%= board.body %>
+  <% board.lists.each do |list| %>
+    <h4>リストタイトル<h4>
+    <%= list.title %>
+    <% list.tasks.each do |task| %>
+      <h4>タスクタイトル<h4>
+      <%= task.title %>
+      <h4>タスク詳細</h4>
+      <%= task.body %>
+    <% end %>
+  <% end %>
+<% end %>
