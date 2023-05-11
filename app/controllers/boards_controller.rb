@@ -5,8 +5,8 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
-    boards = @board.lists.build
-    boards.tasks.build
+    @boards = @board.lists.build
+    @boards.tasks.build
   end
 
   def create
