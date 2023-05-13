@@ -1,17 +1,19 @@
-<h1>ボード一覧(public)</h1>
-<% @boards.each do |board| %>
-  <h4>ボードタイトル<h4>
-  <%= board.title %>
-  <h4>ボード詳細<h4>
-  <%= board.body %>
-  <% board.lists.each do |list| %>
-    <h4>リストタイトル<h4>
-    <%= list.title %>
-    <% list.tasks.each do |task| %>
-      <h4>タスクタイトル<h4>
-      <%= task.title %>
-      <h4>タスク詳細</h4>
-      <%= task.body %>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">ボード一覧</h1>
+</div>
+
+<div class="card-group">
+    <div class="row">
+      <% @boards.each do |board| %>
+      <div class="col-sm-6">
+        <div class="card m-5">
+          <div class="card-body">
+            <h5 class="card-title"><%= board.title %></h5>
+            <p class="card-text"><%= board.created_at %></p>
+            <a href="#" class="btn"><%= link_to "詳細", boards_path %></a>
+          </div>
+        </div>
+      </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</div>

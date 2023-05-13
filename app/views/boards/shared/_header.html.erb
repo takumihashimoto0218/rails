@@ -1,6 +1,11 @@
-<% if user_signed_in? %>
-  <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-   <%= link_to "ログイン", new_user_session_path %>
-   <%= link_to "新規登録", new_user_registration_path %>
-<% end %>
+<nav class="pt-3 mx-3">
+  <a class="p-2 text-dark">話の種コレクション</a>
+  <a class="p-2 text-dark" href="#"><%= link_to "ボード一覧", boards_path %></a>
+  <a class="p-2 text-dark" href="#">プロフィール</a>
+  <% if user_signed_in? %>
+    <a class="p-2 text-dark" href="#"><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %></a>
+  <% else %>
+    <a class="p-2 text-dark" href="#"> <%= link_to "ログイン", new_user_session_path %></a>
+    <a class="p-2 text-dark" href="#"><%= link_to "新規登録", new_user_registration_path %></a>
+  <% end %>
+</nav>
