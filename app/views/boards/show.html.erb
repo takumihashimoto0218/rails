@@ -1,13 +1,24 @@
-<h1 class="display-4 m-4"><%= @board.title %></h1>
+<h3>ボードタイトル</h3>
+<h4 class="display-4 m-4"><%= @board.title %></h4>
 <div class="group d-flex m-4">
   <% @board.lists.each do |list| %>
     <div class="flex-row m-5">
-      <%= list.title %>
+      <h4>リストタイトル</h4>
+      <% if list.title == nil %>
+         <h6>後で編集機能実装</h6>
+      <% else %>
+        <%= list.title %>
+      <% end %>
       <div class="flex-column mt-5">
         <% list.tasks.each do |task| %>
           <div class="card mt-3" style="width: 15rem;">
             <div class="card-body">
-              <%= link_to task.title, task_path(task) %>
+              <h4>タスクタイトル</h4>
+              <% if task.title == nil %>
+                <h6>後で編集機能実装</h6>
+              <% else %>
+                <%= link_to task.title, task_path(task) %>
+              <% end %>
             </div>
           </div>
         <% end %>
