@@ -1,6 +1,6 @@
 class List < ApplicationRecord
   has_many :tasks, dependent: :destroy
-  accepts_nested_attributes_for :tasks
+  accepts_nested_attributes_for :tasks, update_only: true
   belongs_to :board, optional: true
   accepts_nested_attributes_for :board
   validates :title, presence: true, length: {maximum: 30}
