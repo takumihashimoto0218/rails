@@ -1,10 +1,11 @@
 class BoardsController < ApplicationController
+  before_action :set_board, only: [:show, :edit, :update]
+
   def index
     @boards = Board.all
   end
 
   def show
-    @board = Board.find(params[:id])
   end
 
   def new
@@ -22,11 +23,28 @@ class BoardsController < ApplicationController
     end
   end
 
+  def edit
+    # @boards = @board.lists.build
+    # @bord = @boards.tasks.build
+  end
+
+  def update
+    if @board.update!(board_params)
+      redirect_to boards_path
+    else
+      render :edit
+    end  
+  end
+
   private
     def board_params
-      params.require(:board).permit(:title, :body,lists_attributes: [:title, 
-        tasks_attributes: [:title, :body, :diffculty_level, :is_solo]
+      params.require(:board).permit(:title, :body,lists_attributes: [:id,:title,
+        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo]
         ]
       )
+    end
+
+    def set_board
+      @board = Board.find(params[:id])
     end
 end
