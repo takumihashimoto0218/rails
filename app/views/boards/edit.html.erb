@@ -1,0 +1,22 @@
+<h4>編集画面</h4>
+<%= form_with model: @board, local: true do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <% 2.times do |i| %>
+    <%= f.fields_for "lists_attributes[#{i}]", @board do |list| %>
+      <%= list.label :list_title %>
+      <%= list.text_field :title %>
+      <% 2.times do |j| %>
+        <%= list.fields_for "tasks_attributes[#{j}]", @board do |task| %>
+          <%= task.label :task_title %>
+          <%= task.text_field :title %>
+          <%= task.label :task_body %>
+          <%= task.text_area :body %>
+        <% end %>
+      <% end %>
+    <% end %>  
+  <% end %>
+  <%= f.submit 'ボードを編集する' %>
+<% end %>
