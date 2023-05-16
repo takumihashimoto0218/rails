@@ -4,8 +4,8 @@
   <% @board.lists.each do |list| %>
     <div class="flex-row m-5">
       <h4>リストタイトル</h4>
-      <% if list.title == nil %>
-         <h6>後で編集機能実装</h6>
+      <% if list == nil %>
+         <%= link_to "リスト名を編集する", edit_board_path(@board) %>
       <% else %>
         <%= list.title %>
       <% end %>
@@ -15,7 +15,7 @@
             <div class="card-body">
               <h4>タスクタイトル</h4>
               <% if task.title == nil %>
-                <h6>後で編集機能実装</h6>
+                <%= link_to "タスクを追加する", edit_board_path(@board) %>
               <% else %>
                 <%= link_to task.title, task_path(task) %>
               <% end %>
@@ -26,3 +26,4 @@
     </div>
   <% end %>
 </div>
+<%= link_to "編集", edit_board_path(@board) %>
