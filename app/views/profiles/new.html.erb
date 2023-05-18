@@ -1,7 +1,2 @@
-<%= form_with model: @profile, url: profile_path, local: true do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :self_introduction %>
-  <%= f.text_area :self_introduction %>
-  <%= f.submit 'プロフィールを作成する' %>
-<% end %>
+<h4>プロフィール登録画面</h4>
+<%= render partial: "form" %>
