@@ -1,18 +1,31 @@
 <h4>編集画面</h4>
-<%= form_with model: @board do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-    <%= f.fields_for :lists do |list| %>
-      <%= list.label :list_title %>
-      <%= list.text_field :title %>
-        <%= list.fields_for :tasks do |task| %>
-          <%= task.label :task_title %>
-          <%= task.text_field :title %>
-          <%= task.label :task_body %>
-          <%= task.text_area :body %>
-        <% end %>
-    <% end %>  
-  <%= f.submit 'ボードを編集する' %>
-<% end %>
+
+  <%= form_with model: @board do |f| %>
+    <div class="row m-5 p-5">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div class="row">
+        <%= f.fields_for :lists do |list| %>
+          <div class="card">
+            <div class="field mt-5">
+              <%= list.label :list_title %>
+              <%= list.text_field :title %><br>
+            </div>
+            <%= list.fields_for :tasks do |task| %>
+              <div class="field mt-20">
+                <%= task.label :task_title %>
+                <%= task.text_field :title %>
+                <%= task.label :task_body %>
+                <%= task.text_area :body %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>  
+      </div>
+    <div class="mt-4 text-end">  
+      <%= f.submit 'ボードを編集する' %>
+    </div>
+  <% end %>
