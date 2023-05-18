@@ -24,8 +24,6 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    # @boards = @board.lists.build
-    # @bord = @boards.tasks.build
   end
 
   def update
