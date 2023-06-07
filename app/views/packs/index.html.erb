@@ -1,0 +1,6 @@
+<h1>パック一覧</h1>
+
+<% @packs.each do |pack| %>
+  パック名：<%= pack.name %><br>
+  企画：<%= pack.packdetail.title %><br>
+<% end %>
