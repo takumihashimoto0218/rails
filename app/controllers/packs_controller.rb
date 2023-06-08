@@ -9,9 +9,12 @@ class PacksController < ApplicationController
 
   def new
     @pack = Pack.new
+    # @pack.packdetails.build
   end
 
   def create
+    plan_array = params[:pack][:topic]
+    params[:pack][:topic] = plan_array.join(',')
     @pack = Pack.new(pack_params)
     if @pack.save!
       redirect_to packs_path, notice: "投稿しました"
@@ -22,6 +25,6 @@ class PacksController < ApplicationController
 
   private 
     def pack_params
-      params.require(:pack).permit(:name, :packdetail_id)
+      params.require(:pack).permit(:name, packdetails_attributes:[:id, :topic_id ])
     end
 end
