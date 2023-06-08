@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :tasks
   resource :profile, only: [:new, :create,:show, :edit, :update]
   resources :packs
+  resources :packdetails
 end
