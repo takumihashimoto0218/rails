@@ -37,6 +37,7 @@ gem 'devise'
 
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'pry-rails'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
