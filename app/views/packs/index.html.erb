@@ -1,5 +1,19 @@
-<h1>パック一覧</h1>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">パック一覧</h1>
+</div>
 
-<% @packs.each do |pack| %>
-  パック名：<%= pack.name %><br>
-<% end %>
+<div class="card-group">
+  <div class="flex w-100">
+    <% @packs.each do |pack| %>
+      <div class="col-sm-6">
+        <div class="card m-5">
+          <div class="card-body">
+            <h5 class="card-title">パック名：<%= pack.name %></h5>
+            <p class="card-text"><%= pack.created_at %></p>
+            <a href="#" class="btn"><%= link_to "詳細", pack_path(pack) %></a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
