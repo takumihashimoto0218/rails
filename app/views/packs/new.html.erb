@@ -7,7 +7,7 @@
     </div>
     <%= f.fields_for :packdetails do |t| %>
       <%= t.label :topic_id %>
-      <%= t.check_box :Packdetail.topic_id,{}, true, false %>
+      <%= t.url_field :topic_id %>
     <% end %> 
 
     <div class="mt-4 text-end">  
