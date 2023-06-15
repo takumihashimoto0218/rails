@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_131231) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_171452) do
   create_table "boards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_131231) do
 
   create_table "packs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "packdetail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,12 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_131231) do
     t.integer "diffculty_level"
     t.boolean "is_solo"
     t.bigint "list_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "topics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
