@@ -9,8 +9,8 @@
         <div class="card m-5">
           <div class="card-body">
             <h5 class="card-title">パック名：<%= pack.name %></h5>
-            <p class="card-text"><%= pack.created_at %></p>
-            <a href="#" class="btn"><%= link_to "詳細", pack_path(pack) %></a>
+            <p class="card-text"><%= pack.packdetails.first.topic_id %></p>
+            <%= link_to "詳細", pack_path(pack), class: "btn" %>
           </div>
         </div>
       </div>

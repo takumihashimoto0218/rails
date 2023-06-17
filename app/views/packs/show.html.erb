@@ -1,3 +1,9 @@
 <h1>パック詳細画面</h1>
+<h4 class="display-4 m-4">
 <%= @pack.name %>
-<%= @pack.packdetail.title %>
+</h4>
+<div class="group d-flex m-4">
+  <div class="flex-row m-5">
+    topic_id:<%= @pack.packdetails.first.topic_id %>
+  </div>
+</div>
