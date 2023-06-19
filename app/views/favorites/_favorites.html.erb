@@ -5,7 +5,7 @@
   <%= board.favorites.count %>
 <% else %>
   <%= link_to board_favorites_path(board.id), method: :post, remote: true do %>
-    <i class="fa-thin fa-heart"></i>
+    <i class="fa-regular fa-heart"></i>
   <% end %>
   <%= board.favorites.count %>
 <% end %>

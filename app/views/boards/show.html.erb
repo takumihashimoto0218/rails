@@ -26,4 +26,14 @@
     </div>
   <% end %>
 </div>
+<% if user_signed_in? %>
+  <p id="favorite_button_<%= @board.id %>">
+    <%= render partial: "favorites/favorites", locals: {board: @board} %>
+  </p>
+<% else %>
+  <p data-bs-toggle="modal" data-bs-target="#signUpModal">
+    <i class="bi bi-heart"></i>
+    <%= @board.favorites.count %>
+  </p>
+<% end %>
 <%= link_to "編集", edit_board_path(@board) %>
