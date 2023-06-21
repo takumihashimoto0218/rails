@@ -1,10 +1,10 @@
 <% if current_user.already_favorited?(board) %>
-  <%= link_to board_favorites_path(board.id), method: :delete, remote: true do %>
+  <%= link_to board_favorite_path(board.id), data: { turbo_method: :delete }, remote: true do %>
     <i class="fa-solid fa-heart"></i>
   <% end %>
   <%= board.favorites.count %>
 <% else %>
-  <%= link_to board_favorites_path(board.id), method: :post, remote: true do %>
+  <%= link_to board_favorite_path(board.id), data: { turbo_method: :post }, remote: true do %>
     <i class="fa-regular fa-heart"></i>
   <% end %>
   <%= board.favorites.count %>
