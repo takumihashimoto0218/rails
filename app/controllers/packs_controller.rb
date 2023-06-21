@@ -13,28 +13,21 @@ class PacksController < ApplicationController
   end
 
   def create
-    url = pack_params[:packdetails_attributes]["0"][:topic_id]
-    modified_url = modify_url(url)
-    binding.pry
-    modified_pack_params = pack_params.deep_dup
-    modified_pack_params[:packdetails_attributes]["0"][:topic_id] = modified_url
+    modified_pack_params = Pack.modified_packdetails(pack_params)
     @pack = Pack.new(modified_pack_params)
-    @pack.save
     if @pack.save
       redirect_to packs_path, notice: "投稿しました"
     else
       render :new
-    end  
+      return #繰り返しrenderが呼び出されないように
+    end
   end
+  
 
   private 
     def pack_params
       params.require(:pack).permit(:name, packdetails_attributes:[:topic_id ])
     end
-
-    # def get_topic_id
-    #   @topic_id = Packdetail::Find_Topic_id
-    # end
 
     def modify_url(url)
       topic = url.match(/\/(\d+)$/)[1]
