@@ -18,7 +18,7 @@
             <% else %>
               <p data-bs-toggle="modal" data-bs-target="#signUpModal">
                 <i class="bi bi-heart"></i>
-                <%= topic.favorites.count %>
+                <%= board.favorites.count %>
               </p>
             <% end %>
           </div>
@@ -27,9 +27,7 @@
     <% end %>
   </div>
 </div>
-<p>jQuery稼働テスト</p>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("p").text("jQuery稼働テスト(稼働中)");
-  });
-</script>
+$(function(){
+  alert("jQuery 動いた！")
+  console.log("hello")
+})
