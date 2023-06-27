@@ -11,9 +11,25 @@
             <h5 class="card-title"><%= board.title %></h5>
             <p class="card-text"><%= board.created_at %></p>
             <a href="#" class="btn"><%= link_to "詳細", board_path(board) %></a>
+            <% if user_signed_in? %>
+              <p id="favorite_button_<%= board.id %>">
+                <%= render partial: "favorites/favorites", locals: {board: board} %>
+              </p>
+            <% else %>
+              <p data-bs-toggle="modal" data-bs-target="#signUpModal">
+                <i class="bi bi-heart"></i>
+                <%= topic.favorites.count %>
+              </p>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+<p>jQuery稼働テスト</p>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("p").text("jQuery稼働テスト(稼働中)");
+  });
+</script>
