@@ -5,10 +5,12 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
-    <%= f.fields_for :packdetails do |t| %>
-      <%= t.label :topic_id %>
-      <%= t.url_field :topic_id %>
-    <% end %> 
+    <% 2.times do |i| %>
+      <%= f.fields_for "packdetails_attributes[#{i}]", @pack.packdetails.build  do |t| %>
+        <%= t.label :topic_id %>
+        <%= t.url_field :topic_id %>
+      <% end %> 
+    <% end %>
 
     <div class="mt-4 text-end">  
       <%= f.submit 'パックを登録する' %>
