@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :boards
+  resources :tasks
+  resource :profile, only: [:new, :create,:show, :edit, :update]
+  resources :packs
+  resources :packdetails
 end

@@ -1,0 +1,11 @@
+<%= form_with model: @profile, url: profile_path, local: true do |f| %>
+  <div class="row m-5">
+    <div class=" mb-3"><%= f.label :name %></div>
+    <%= f.text_field :name %>
+    <div class=" mb-3 mt-5"><%= f.label :self_introduction %></div>
+    <%= f.text_area :self_introduction %>
+  </div>
+  <div class="mt-4 text-end">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<% if @profile == nil %>
+  <%= link_to "プロフィールを登録する",new_profile_path %>
+<% else %>
+  <h4>ニックネーム</h4><br>
+  <%= @profile.name %><br>
+  <h4>自己紹介文</h4><br>
+  <%= @profile.self_introduction %><br>
+  <%= link_to "編集する", edit_profile_path %>
+<% end %>
