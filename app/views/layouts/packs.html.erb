@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>packs</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,noindex">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+  </head>
+
+  <body>
+    <%= render "packs/shared/header" %>
+
+    <div class="container is-max-desktop mt-5">
+      <% if flash[:notice] %>
+        <div class="notification is-primary is-light flash notice-flash">
+          <p class="notice is-size-5"><%= notice %></p>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="notification is-danger is-light flash alert-flash">
+          <p class="alert is-size-5"><%= alert %></p>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>
