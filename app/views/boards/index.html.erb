@@ -10,16 +10,14 @@
           <div class="card-body">
             <h5 class="card-title"><%= board.title %></h5>
             <p class="card-text"><%= board.created_at %></p>
-            <a href="#" class="btn"><%= link_to "詳細", board_path(board) %></a>
+            <a href="#" class="btn"><%= link_to "詳細", boards_path(board) %></a>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
                 <%= render partial: "favorites/favorites", locals: {board: board} %>
               </p>
             <% else %>
-              <p data-bs-toggle="modal" data-bs-target="#signUpModal">
                 <i class="bi bi-heart"></i>
-                <%= board.favorites.count %>
-              </p>
+                <%= board.favorites.count %>   
             <% end %>
           </div>
         </div>
