@@ -1,3 +1,1 @@
-$('#favorite-link').hide();
-$('#unfavorite-link').show();
-console.log("hello")
+$('#favorite_buttons_<%= board.id %>').html("<%= j(render "favorites/favorite", board: @board) %>");
