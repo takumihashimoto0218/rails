@@ -6,3 +6,8 @@ User.create!(
     { name: "test4", email: "test4@gamil.com", password: "testtest"}
   ]
 )
+
+Admin.create!(
+  email: 'admin@gmail.com',
+  password: 'testtest'
+)
