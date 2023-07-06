@@ -1,3 +1,7 @@
+require "net/http"
+require "uri"
+require "json"
+
 class PacksController < ApplicationController
   def index
     @packs = Pack.all
@@ -5,6 +9,28 @@ class PacksController < ApplicationController
   
   def show
     @pack = Pack.find(params[:id])
+    # binding.pry
+    uri = URI("https://hanatane.jp/api/v1/topics/#{@pack.packdetails.first.topic_id}")
+    # uri.query = URI.encode_www_form()
+
+    https = Net::HTTP.new(uri.host, uri.port)
+    https.use_ssl = true
+
+    begin
+      request = Net::HTTP::Get.new(uri)
+      response = https.request(request)
+
+      if response.is_a?(Net::HTTPSuccess)
+        @topics = JSON.parse(response.body)["topic"]
+      else
+        flash[:alert] = "There was an error retrieving the topics."
+        @topics = []
+      end
+    rescue StandardError => e
+      flash[:alert] = "An unexpected error occurred: #{e.message}"
+      @topics = []
+    end
+    binding.pry
   end
 
   def new
