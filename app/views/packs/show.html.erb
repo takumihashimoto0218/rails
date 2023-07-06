@@ -4,6 +4,8 @@
 </h4>
 <div class="group d-flex m-4">
   <div class="flex-row m-5">
-    <h4><%= @topics["title"] %></h4>
+    <% @topics.each do |topic| %>
+      企画タイトル<h4><%= topic["title"] %></h4>
+    <% end %>
   </div>
 </div>
