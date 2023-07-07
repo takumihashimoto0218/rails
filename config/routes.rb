@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admins
+
+  namespace :admin do
+    resources :users, only: [:index, :show]
+  end
+
   devise_for :users
   resources :boards do
     post 'favorite', to:'favorites#create'
