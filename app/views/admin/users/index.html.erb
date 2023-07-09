@@ -1,4 +1,4 @@
 <h1>ユーザー一覧</h1>
 <% @users.each do |user| %>
-  <div><%= user.name %></div>
+  <div><%= link_to user.name, "/admin/users/#{user.id}" %></div>
 <% end %>
