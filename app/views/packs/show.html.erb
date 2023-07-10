@@ -6,6 +6,8 @@
   <div class="flex-row m-5">
     <% @topics.each do |topic| %>
       企画タイトル<h4><%= topic["title"] %></h4>
+      <%= topic["id"] %>
     <% end %>
   </div>
+  <%= link_to "編集", edit_pack_path(@pack) %>
 </div>
