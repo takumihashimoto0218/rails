@@ -3,6 +3,7 @@
 <% else %>
   <h4>ニックネーム</h4><br>
   <%= @profile.name %><br>
+  <% image_tag @profile.profile_image %>
   <h4>自己紹介文</h4><br>
   <%= @profile.self_introduction %><br>
   <%= link_to "編集する", edit_profile_path %>
