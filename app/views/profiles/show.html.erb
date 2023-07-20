@@ -3,7 +3,11 @@
 <% else %>
   <h4>ニックネーム</h4><br>
   <%= @profile.name %><br>
-  <% image_tag @profile.profile_image %>
+  <% if @profile.profile_image.attached? %>
+    <%= image_tag @profile.profile_image.variant(resize: "100x100") %>
+  <% else %>
+    <%= image_tag "default_profile.webp", :size => "100x100" %>
+  <% end %>
   <h4>自己紹介文</h4><br>
   <%= @profile.self_introduction %><br>
   <%= link_to "編集する", edit_profile_path %>
