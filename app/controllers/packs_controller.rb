@@ -41,7 +41,6 @@ class PacksController < ApplicationController
     modified_pack_params = Pack.modified_packdetails(pack_params)
     @pack = Pack.new(modified_pack_params)
     if @pack.save
-      binding.pry
       redirect_to packs_path, notice: "投稿しました"
     else
       render :new
@@ -54,7 +53,6 @@ class PacksController < ApplicationController
 
   def update
     update_modified_pack_params = Pack.update_modified_packdetails(pack_params)
-    binding.pry
     if @pack.update!(update_modified_pack_params)
       redirect_to pack_path(@pack)
     else
