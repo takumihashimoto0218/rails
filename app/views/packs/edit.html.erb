@@ -1,0 +1,15 @@
+<h4>パック編集画面</h4>
+
+  <%= form_with model: @pack do |f| %>
+    <div class="row m-5 p-5">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <%= f.fields_for :packdetails do |pack| %>
+      <%= pack.label :url %>
+      <%= pack.url_field :topic_id %>
+    <% end %>
+    <div class="mt-4 text-end">  
+      <%= f.submit 'パックを編集する' %>
+    </div>
+  <% end %>
