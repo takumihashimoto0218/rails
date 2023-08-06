@@ -5,14 +5,14 @@ require "json"
 class PacksController < ApplicationController
  
   before_action :set_pack, only: [:show, :edit, :update]
-  # before_action :set_topic, only: [:show]
+  before_action :set_topic, only: [:show]
  
   def index
     @packs = Pack.all
   end
   
   def show
-    @topics = PackWrapper.fetch_topics(@pack)
+    
   end
     
 
@@ -57,7 +57,7 @@ class PacksController < ApplicationController
 
     def set_topic
       begin
-        @topics = PackWrapper.get_topic(uris)
+        @topics = PackWrapper.fetch_topics(@pack)
       rescue StandardError => e
         flash[:alert] = e.message
       end
