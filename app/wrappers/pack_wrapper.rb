@@ -20,7 +20,6 @@ class PackWrapper
     rescue StandardError => e
       flash[:alert] = "An unexpected error occurred: #{e.message}"
     end
-
     topics
   end
 end

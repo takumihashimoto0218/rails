@@ -12,9 +12,7 @@ class PacksController < ApplicationController
   end
   
   def show
-    
   end
-    
 
   def new
     @pack = Pack.new
