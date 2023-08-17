@@ -1,4 +1,3 @@
-<h4>ボード新規投稿画面</h4>
 <%= form_with model: @board do |f| %>
   <div class="row m-5 p-5">
     <%= f.label :title %>
@@ -6,21 +5,28 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
-  <div class="row m-5 p-5">
-    <% 2.times do |i| %>
-      <%= f.fields_for "lists_attributes[#{i}]", @board.lists.build do |list| %>
+  
+  <div class="row">
+    <%= f.fields_for :lists do |list| %>
+    <div class="card">
+      <div class="field mt-5">
         <%= list.label :list_title %>
-        <%= list.text_field :title %>
-        <% 2.times do |j| %>
-          <%= list.fields_for "tasks_attributes[#{j}]", @boards.tasks.build  do |task| %>
-            <%= task.label :task_title %>
-            <%= task.text_field :title %>
-            <%= task.label :task_body %>
-            <%= task.text_area :body %>
-          <% end %>
-        <% end %>
-      <% end %>  
-    <% end %>
+        <%= list.text_field :title %><br>
+      </div>
+      <%= list.fields_for :tasks do |task| %>
+        <div class="field mt-20">
+          <%= task.label :task_title %>
+          <%= task.text_field :title %>
+          <%= task.label :task_body %>
+          <%= task.text_area :body %>
+        </div>
+      <% end %>
+    </div>
   </div>  
-  <%= f.submit 'ボードを作成する' %>
+<% end %>  
+  </div>
+  
+  <div class="mt-4 text-end">
+    <%= f.submit 'ボードを作成する' %>
+  </div>
 <% end %>

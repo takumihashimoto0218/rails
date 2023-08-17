@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update]
+  before_action :set_topic, only: [:new, :create]
 
   def index
     @boards = Board.all
@@ -9,9 +10,7 @@ class BoardsController < ApplicationController
   end
 
   def new
-    @board = Board.new
-    @boards = @board.lists.build
-    @boards.tasks.build
+    @board = Board.board_new(@pack,@topics)
   end
 
   def create
@@ -45,4 +44,16 @@ class BoardsController < ApplicationController
     def set_board
       @board = Board.find(params[:id])
     end
+
+    def set_topic
+      @pack = Pack.find_by(id: params[:pack_id])
+      return if @pack.nil?
+    
+      begin
+        @topics = PackWrapper.fetch_topics(@pack)
+      rescue StandardError => e
+        flash[:alert] = e.message
+      end
+    end
+    
 end
