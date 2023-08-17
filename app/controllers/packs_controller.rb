@@ -46,7 +46,7 @@ class PacksController < ApplicationController
 
   private 
     def pack_params
-      params.require(:pack).permit(:name, packdetails_attributes:[:id, :topic_id ])
+      params.require(:pack).permit(:title, packdetails_attributes:[:id, :topic_id ])
     end
 
     def set_pack
