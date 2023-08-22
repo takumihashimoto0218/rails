@@ -1,3 +1,6 @@
+<script>
+  window.packId = <%= @pack.id %>;
+</script>
 <h1>パック詳細画面</h1>
 <h4 class="display-4 m-4">
 <%= @pack.title %>
@@ -10,29 +13,7 @@
     <% end %>
   </div>
   <%= link_to "編集", edit_pack_path(@pack) %>
-  <button id="create-board-button">パックからボードを作成</button>
+  <button id="create-board-button" data-pack-id="<%= @pack.id %>">パックからボードを作成</button>
+  <%= javascript_include_tag 'create-board' %>
+
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const createBoardButton = document.getElementById('create-board-button');
-
-    createBoardButton.addEventListener('click', () => {
-      const packId = <%= @pack.id %>;
-      
-      const form = document.createElement('form');
-      form.method = 'GET';
-      form.action = '/boards/new'; // 送信先のURLを指定
-
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'pack_id';
-      input.value = packId;
-
-      form.appendChild(input);
-
-      document.body.appendChild(form);
-      form.submit();
-    });
-  });
-</script>
