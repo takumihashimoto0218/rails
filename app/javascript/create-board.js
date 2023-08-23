@@ -1,25 +1,20 @@
 // create-board.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  const createBoardButton = document.getElementById('create-board-button');
-  const packId = createBoardButton.dataset.packId;
-
+  const createBoardButton = $('#create-board-button').get(0);
+  const packId = $('[data-pack-id]').data('pack-id');
 
   createBoardButton.addEventListener('click', () => {
-    const form = document.createElement('form');
-    form.method = 'GET';
-    form.action = '/boards/new';
+    const form = $('<form>');
+    form.prop('method', 'GET');
+    form.prop('action', '/boards/new');
 
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'pack_id';
-    input.value = packId;
+    $('<input>', {
+      type: 'hidden',
+      name: 'pack_id',
+      value: packId
+    }).appendTo(form);
 
-    form.appendChild(input);
-
-    document.body.appendChild(form);
+    form.appendTo('body');
     form.submit();
   });
 });
-
-
