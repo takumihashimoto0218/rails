@@ -3,7 +3,6 @@ class Pack < ApplicationRecord
   validates :title, presence: true, length: {maximum: 30}
   has_many :packdetails, dependent: :destroy
   accepts_nested_attributes_for :packdetails
-  belongs_to  :board, optional: true
 
   def self.modified_packdetails(pack_params)
     begin

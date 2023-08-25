@@ -4,7 +4,6 @@ class Board < ApplicationRecord
   validates :title, presence: true, length: {maximum: 30}
   validates :body, length: {maximum: 1000}
   has_many :favorites, dependent: :destroy
-  has_many :packs, dependent: :destroy
 
   def self.board_new(pack, topics)
     board = Board.new

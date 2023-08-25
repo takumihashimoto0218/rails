@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
   end
 
   def new
-    @board = Board.board_new(@pack,@topics)
+    @board = Board.board_new(@pack,@topic_json)
   end
 
   def create
@@ -50,9 +50,9 @@ class BoardsController < ApplicationController
       return if @pack.nil?
     
       begin
-        @topics = PackWrapper.fetch_topics(@pack)
+        @topic_json = PackWrapper.fetch_topics(@pack)
       rescue StandardError => e
-        flash[:alert] = e.message
+        flash[:alert] = "エラーが発生しました: #{e.message}"
       end
     end
     
