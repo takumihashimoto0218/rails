@@ -77,6 +77,7 @@ GEM
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
+    cocoon (1.2.15)
     coderay (1.1.3)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
@@ -228,6 +229,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap
+  cocoon
   cssbundling-rails
   debug
   devise

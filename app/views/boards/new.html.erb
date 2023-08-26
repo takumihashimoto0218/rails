@@ -8,25 +8,24 @@
   
   <div class="row">
     <%= f.fields_for :lists do |list| %>
-    <div class="card">
-      <div class="field mt-5">
-        <%= list.label :list_title %>
-        <%= list.text_field :title %><br>
+      <div class="card">
+        <%= render "list_fields", f: list %>
+        <%= list.fields_for :tasks do |task| %>
+          <%= render "task_fields", list: task %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association "Add Task", list, :tasks %>
+        </div> 
       </div>
-      <%= list.fields_for :tasks do |task| %>
-        <div class="field mt-20">
-          <%= task.label :task_title %>
-          <%= task.text_field :title %>
-          <%= task.label :task_body %>
-          <%= task.text_area :body %>
-        </div>
-      <% end %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "Add List", f, :lists %>
     </div>
-  </div>  
-<% end %>  
+
   </div>
   
   <div class="mt-4 text-end">
     <%= f.submit 'ボードを作成する' %>
   </div>
 <% end %>
+
