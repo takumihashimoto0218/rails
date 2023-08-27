@@ -15,3 +15,8 @@ Profile.create(
     { name: "test1", user_id: 4, self_introduction: "私はテストユーザーです。よろしくお願いします。"}
   ]
 )
+
+Admin.create!(
+  email: 'admin@gmail.com',
+  password: 'testtest'
+)

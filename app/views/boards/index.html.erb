@@ -16,10 +16,8 @@
                 <%= render partial: "favorites/favorites", locals: {board: board} %>
               </p>
             <% else %>
-              <p data-bs-toggle="modal" data-bs-target="#signUpModal">
                 <i class="bi bi-heart"></i>
-                <%= board.favorites.count %>
-              </p>
+                <%= board.favorites.count %>   
             <% end %>
           </div>
         </div>
