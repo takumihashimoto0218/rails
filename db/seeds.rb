@@ -7,6 +7,15 @@ User.create!(
   ]
 )
 
+Profile.create(
+  [
+    { name: "test1", user_id: 1, self_introduction: "私はテストユーザーです。よろしくお願いします。"},
+    { name: "test1", user_id: 2, self_introduction: "私はテストユーザーです。よろしくお願いします。"},
+    { name: "test1", user_id: 3, self_introduction: "私はテストユーザーです。よろしくお願いします。"},
+    { name: "test1", user_id: 4, self_introduction: "私はテストユーザーです。よろしくお願いします。"}
+  ]
+)
+
 Admin.create!(
   email: 'admin@gmail.com',
   password: 'testtest'
