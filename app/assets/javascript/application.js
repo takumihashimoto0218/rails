@@ -1,12 +1,10 @@
-import jquery from "jquery"
-// import { Application } from "stimulus"
-// import { definitionsFromContext } from "stimulus/webpack-helpers"
+import jquery from "jquery";
+window.$ = window.jQuery = jquery;
+$(function(){
+  alert("jQuery 動いた！")
+})
 
-// const application = Application.start()
-// const context = require.context(".", true, /\.js$/)
-// application.load(definitionsFromContext(context))
-// require("cocoon-js")
-window.$ = jquery
-import "@fortawesome/fontawesome-free"
+import "@fortawesome/fontawesome-free";
+import "cocoon-js";
 require("jquery")
 require("@nathanvda/cocoon")
