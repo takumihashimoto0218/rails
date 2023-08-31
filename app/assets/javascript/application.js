@@ -1,10 +1,9 @@
-import jquery from "jquery";
-window.$ = window.jQuery = jquery;
-$(function(){
-  alert("jQuery 動いた！")
+import jquery from "jquery"
+window.$ = jquery
+
+$(function() {
+  console.log("Hello Rails7!");
 })
 
 import "@fortawesome/fontawesome-free";
-import "cocoon-js";
-require("jquery")
-require("@nathanvda/cocoon")
+import "@nathanvda/cocoon";

@@ -8,9 +8,12 @@
   
   <div class="row">
     <%= f.fields_for :lists do |list| %>
-      <div class="card">
-        <%= render "list_fields", f: list %>
-      </div>
+
+      <%= list.fields_for :tasks do |task| %>
+        <div class="card">
+          <%= render "list_fields", f: list %>
+        </div>
+      <% end %>
     <% end %>
     <div class="links">
       <%= link_to_add_association "Add List", f, :lists %>

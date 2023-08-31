@@ -35,8 +35,8 @@ class BoardsController < ApplicationController
 
   private
     def board_params
-      params.require(:board).permit(:title, :body,lists_attributes: [:id,:title,
-        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo]
+      params.require(:board).permit(:title, :body,lists_attributes: [:id,:title,:_destroy,
+        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo,:_destroy]
         ]
       )
     end
