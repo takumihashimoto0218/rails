@@ -1,16 +1,5 @@
-<!-- app/views/boards/_list_fields.html.erb -->
 <div class="nested-fields">
   <%= f.label :list_title %>
-  <%= f.text_field :title %><br>
-  
-  <%= f.fields_for :tasks do |task| %>
-    <div class="field mt-20">
-      <%= task.label :task_title %>
-      <%= task.text_field :title %>
-      <%= task.label :task_body %>
-      <%= task.text_area :body %>
-    </div>
-  <% end %>
-  
+  <%= f.text_field :title %><br> 
   <%= link_to_remove_association "Remove List", f %>
 </div>
