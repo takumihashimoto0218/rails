@@ -2,8 +2,8 @@
 
   <%= form_with model: @pack do |f| %>
     <div class="row m-5 p-5">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
     </div>
     <%= f.fields_for :packdetails do |pack| %>
       <%= pack.label :url %>

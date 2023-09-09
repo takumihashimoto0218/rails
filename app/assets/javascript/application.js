@@ -1,8 +1,9 @@
 import jquery from "jquery"
 window.$ = jquery
-import "@fortawesome/fontawesome-free"
 
-$(function(){
-  alert("jQuery 動いた！")
+$(function() {
+  console.log("Hello Rails7!");
 })
-console.log("hello")
+
+import "@fortawesome/fontawesome-free";
+import "@nathanvda/cocoon";

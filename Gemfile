@@ -39,6 +39,8 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'image_processing', '~> 1.12'
+gem 'cocoon'
+
 
 
 gem 'font-awesome-sass'

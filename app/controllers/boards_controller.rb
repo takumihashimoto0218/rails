@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update]
+  before_action :set_topic, only: [:new, :create]
 
   def index
     @boards = Board.all
@@ -9,9 +10,7 @@ class BoardsController < ApplicationController
   end
 
   def new
-    @board = Board.new
-    @boards = @board.lists.build
-    @boards.tasks.build
+    @board = Board.board_new(@pack,@topic_json)
   end
 
   def create
@@ -36,8 +35,8 @@ class BoardsController < ApplicationController
 
   private
     def board_params
-      params.require(:board).permit(:title, :body,lists_attributes: [:id,:title,
-        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo]
+      params.require(:board).permit(:title, :body,lists_attributes: [:id,:title,:_destroy,
+        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo,:_destroy]
         ]
       )
     end
@@ -45,4 +44,16 @@ class BoardsController < ApplicationController
     def set_board
       @board = Board.find(params[:id])
     end
+
+    def set_topic
+      @pack = Pack.find_by(id: params[:pack_id])
+      return if @pack.nil?
+    
+      begin
+        @topic_json = PackWrapper.fetch_topics(@pack)
+      rescue StandardError => e
+        flash[:alert] = "エラーが発生しました: #{e.message}"
+      end
+    end
+    
 end
