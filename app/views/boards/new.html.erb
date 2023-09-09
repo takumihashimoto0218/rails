@@ -5,24 +5,19 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
-  
-  <div class="row">
+
+  <div id="lists" class="row">
     <%= f.fields_for :lists do |list| %>
-      <div class="card">
-        <%= render "list_fields", f: list %>
-        
-        <%= list.fields_for :tasks do |task| %>
-          <%= render "task_fields", f: task %>
-        <% end %>
-        
-        <div class="links">
-          <%= link_to_add_association "Add Task", list, :tasks %>
-          <%= link_to_add_association "Add List", f, :lists %>
-        </div> 
-      </div>
+    <div class="card">
+      <%= render "list_fields", f: list %>
+    </div>
     <% end %>
+    <div id="detail-association-insertion-point"></div>
+    <div class="links">
+      <%= link_to_add_association "+Listを追加", f, :lists %>
+    </div>
   </div>
-  
+
   <div class="mt-4 text-end">
     <%= f.submit 'ボードを作成する' %>
   </div>
