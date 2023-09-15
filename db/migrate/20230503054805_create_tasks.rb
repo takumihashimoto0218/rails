@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration[7.0]
       t.integer :diffculty_level
       t.boolean :is_solo
       t.bigint :list_id,  null: false
+      t.integer :position
       t.timestamps
     end
   end
