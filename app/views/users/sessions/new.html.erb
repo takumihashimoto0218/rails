@@ -1,26 +1,41 @@
-<h2>Log in</h2>
+<body class="center">
+  <div class="box1">
+    <div class="box-inner">
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'form', local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <h1>ログイン</h1>
+        <div class="box-email">
+          <%= f.label :email, "Eメール" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="box-password">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <div class="box-password">
+          <%= f.label :password_confirmation, "パスワード(確認)" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+
+          <div class="form-group">
+            <input type="submit" name="commit" value="ログイン" class="btn btn-danger w-20" data-disable-with="ログイン">
+          </div>
+
+        <% end %>
+
+          <div class="box-newusr">
+            <p><span>------------</span> 既に登録されていますか？ <span>------------</span></p>
+            <%= link_to "新規登録", new_user_registration_path%>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</body>
+</html>

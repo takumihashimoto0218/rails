@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :admins
 
   namespace :admin do
     resources :users, only: [:index, :show]
   end
   
-  devise_for :users
   resources :boards do
     member do
       patch :update_task_order
