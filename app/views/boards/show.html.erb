@@ -1,21 +1,29 @@
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading"><%= @board.title %></h1>
+<section class="jumbotron text-center jumbotron-board">
+    <div class="container d-flex align-items-center justify-content-between"> 
+        <h1 class="jumbotron-heading"><%= @board.title %></h1>
+        <div class="d-flex align-items-center">
+            <div class="mr-3">
+                <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
+            </div>
+            <a href="/boards/<%= @board.id %>/edit" class="btn btn-outline-primary w-20">編集</a>
+        </div>
     </div>
-  </section>
+</section>
 
-  <div class="album bg-light-yellow text-center">
+
+
+
+<div class="album bg-light-yellow text-center">
     <div class="container">
       <div class="row">
         <% @board.lists.each do |list| %>
           <div class="col-md-4 mb-4">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header bg-sandybrown">
                 <% if list.nil? %>
                   <%= link_to "リスト名を編集する", edit_board_path(@board) %>
                 <% else %>
-                  <h4><%= list.title %></h4>
+                  <h4 class="list-title"><%= list.title %></h4>
                 <% end %>
               </div>
               <div class="card-body">
@@ -23,7 +31,7 @@
                   <% list.tasks.each do |task| %>
                     <li data-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board, task_id: task.id) %>">
                       <div class="card task-card">
-                        <div class="card-body">
+                        <div class="card-body bg-white">
                           <% if task.title.nil? %>
                             <%= link_to "タスクを追加する", edit_board_path(@board) %>
                           <% else %>
@@ -40,11 +48,4 @@
         <% end %>
       </div>
     </div>
-    <div class="d-flex align-items-center">
-      <div class="mr-3">
-        <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
-      </div>
-      <a href="/boards/<%= @board.id %>/edit" class="btn btn-outline-primary w-20">編集</a>
-    </div>
-  </div>
-
+</div>

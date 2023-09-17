@@ -15,12 +15,23 @@
  */
  @import "bootstrap";
  @import 'font-awesome';
- 
- .area{
-  display: flex;
-  justify-content: space-around;
- }
+ @import "boards";
+
+
 
  .bg-color {
   background-color: #FFF9E0;
 }
+
+.card-header {
+  background-color: #ffd700
+}
+
+.link-black {
+  color: black;
+}
+
+.link-black:hover {
+  color: gray;
+}
+
