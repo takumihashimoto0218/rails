@@ -1,24 +1,31 @@
-<%= form_with model: @board do |f| %>
+<%= form_with model: @board, html: { class: 'custom-border rounded p-4' } do |f| %>
   <div class="row m-5 p-5">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
+    <div class="mb-3">
+      <%= f.label :title, class: 'form-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :body, class: 'form-label' %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
   </div>
 
   <div id="lists" class="row">
     <%= f.fields_for :lists do |list| %>
-    <div class="card">
-      <%= render "list_fields", f: list %>
-    </div>
+      <div class="card mb-4 p-3 custom-border rounded">
+        <%= render "list_fields", f: list %>
+      </div>
     <% end %>
     <div id="detail-association-insertion-point"></div>
-    <div class="links">
-      <%= link_to_add_association "+Listを追加", f, :lists %>
+    <div class="links mb-4">
+      <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
     </div>
   </div>
 
-  <div class="mt-4 text-end">
-    <%= f.submit 'ボードを作成する' %>
+  <div class="box-newusr mt-4 text-end">
+      <input type="submit" name="commit" value="ボードを作成する" data-disable-with="ボードを作成する" class="btn btn-warning" />
   </div>
 <% end %>
+
+
+
