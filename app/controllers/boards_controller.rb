@@ -34,6 +34,7 @@ class BoardsController < ApplicationController
   end
 
   def update_task_order
+    binding.pry
     task = Task.find(params[:task_id])
     task.update!(position: params[:position])
     head :ok
