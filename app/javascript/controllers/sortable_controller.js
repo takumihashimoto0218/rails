@@ -21,10 +21,3 @@ export default class extends Controller {
     var sortableListId = event.to.dataset.sortableListId;
   }
 }
-
-
-
-
-
-
-
