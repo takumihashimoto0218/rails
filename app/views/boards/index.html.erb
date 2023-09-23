@@ -8,14 +8,14 @@
       <div class="card-deck mb-3 text-center mr-3"> 
         <div class="card mb-4 shadow-sm">
           <div class="card-header">
-            <h3 class="my-0 font-weight-normal"><%= board.title %></h3>
+              <h3 class="my-0 font-weight-normal"><%= board.title %></h3>
           </div>
           <div class="card-body">
             <h5 class="card-title pricing-card-title"><%= board.body %></h5>
             <ul class="list-unstyled mt-3 mb-4">
               <li><%= board.created_at %></li>
             </ul>    
-            <a href="/boards/<%= board.id %> " class="btn btn-lg btn-block btn-outline-primary">詳細</a>
+            <a href="/boards/<%= board.id %>" class="btn btn-lg btn-block btn-outline-primary link-black">詳細</a>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
                 <%= render partial: "favorites/favorites", locals: {board: board} %>
