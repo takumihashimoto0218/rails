@@ -1,36 +1,56 @@
-<h3>ボードタイトル</h3>
-<h4 class="display-4 m-4"><%= @board.title %></h4>
+<main role="main">
 
-<div class="group d-flex m-4">
-  <% @board.lists.each do |list| %>
-    <div class="flex-row m-5">
-      <h4>リストタイトル</h4>
-      <% if list.nil? %>
-        <%= link_to "リスト名を編集する", edit_board_path(@board) %>
-      <% else %>
-        <%= list.title %>
-      <% end %>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading"><%= @board.title %></h1>
+    </div>
+  </section>
 
-      <ul class="flex-column mt-5" data-controller="sortable" data-sortable-handle-value=".card">
-        <% list.tasks.each do |task| %>
-          <li data-id="<%= task.id %>">
-            <div class="card mt-3" style="width: 15rem;" data-sortable-update-url="<%= update_task_order_board_path(@board, task_id: task.id) %>">
-              <div class="card-body">
-                <h4>タスクタイトル</h4>
-                <% if task.title.nil? %>
-                  <%= link_to "タスクを追加する", edit_board_path(@board) %>
+  <div class="album py-5 bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <% @board.lists.each do |list| %>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <% if list.nil? %>
+                  <%= link_to "リスト名を編集する", edit_board_path(@board) %>
                 <% else %>
-                  <%= link_to task.title, task_path(task) %>
+                  <h4><%= list.title %></h4>
                 <% end %>
               </div>
+              <div class="card-body">
+                <ul class="list-unstyled" data-controller="sortable" data-sortable-handle-value=".task-card">
+                  <% list.tasks.each do |task| %>
+                    <li data-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board, task_id: task.id) %>">
+                      <div class="card task-card">
+                        <div class="card-body">
+                          <% if task.title.nil? %>
+                            <%= link_to "タスクを追加する", edit_board_path(@board) %>
+                          <% else %>
+                            <h4><%= link_to task.title, task_path(task) %></h4>
+                          <% end %>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
-          </li>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-</div>
+    <div class="d-flex align-items-center">
+      <div class="mr-3">
+        <%= @board.favorites.count %>
+      </div>
+      <a href="/boards/<%= @board.id %>/edit" class="btn btn-outline-primary w-20">編集</a>
+    </div>
+  </div>
+</main>
 
-<%= @board.favorites.count %><br>
-<%= link_to "編集", edit_board_path(@board) %>
+
+
+
 
