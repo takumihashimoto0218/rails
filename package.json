@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "@nathanvda/cocoon": "^1.2.14"
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@nathanvda/cocoon": "^1.2.14",
+    "@rails/request.js": "^0.0.8",
+    "sortablejs": "^1.15.0",
+    "stimulus": "^3.2.2"
   }
 }

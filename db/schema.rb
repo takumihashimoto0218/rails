@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_082308) do
     t.integer "diffculty_level"
     t.boolean "is_solo"
     t.bigint "list_id", null: false
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

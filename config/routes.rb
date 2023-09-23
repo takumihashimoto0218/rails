@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :boards do
-    post 'favorite', to:'favorites#create'
+    member do
+      patch :update_task_order
+    end
+    post 'favorite', to: 'favorites#create'
     delete 'favorite', to: 'favorites#destroy'
   end
   resources :tasks

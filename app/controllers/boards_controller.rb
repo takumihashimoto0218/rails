@@ -33,10 +33,16 @@ class BoardsController < ApplicationController
     end  
   end
 
+  def update_task_order
+    task = Task.find(params[:task_id])
+    task.update!(position: params[:position])
+    head :ok
+  end
+
   private
     def board_params
       params.require(:board).permit(:title, :body,lists_attributes: [:id,:title,:_destroy,
-        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo,:_destroy]
+        tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo,:_destroy, :position]
         ]
       )
     end
