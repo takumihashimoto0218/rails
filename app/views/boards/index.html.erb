@@ -15,7 +15,7 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li><%= board.created_at %></li>
             </ul>    
-            <a href="/boards/<%= board.id %>" class="btn btn-lg btn-block btn-outline-primary link-black">詳細</a>
+            <a href="/boards/<%= board.id %>" class="btn btn-lg btn-block btn-warning link-black">詳細</a>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
                 <%= render partial: "favorites/favorites", locals: {board: board} %>
