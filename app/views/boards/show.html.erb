@@ -1,5 +1,5 @@
 <section class="jumbotron text-center jumbotron-board">
-    <div class="container d-flex align-items-center justify-content-between"> 
+    <div class="container d-flex align-items-center justify-content-between">
         <h1 class="jumbotron-heading"><%= @board.title %></h1>
         <div class="d-flex align-items-center">
             <div class="mr-3">
@@ -9,9 +9,6 @@
         </div>
     </div>
 </section>
-
-
-
 
 <div class="album bg-light-yellow text-center">
     <div class="container">
@@ -27,7 +24,7 @@
                 <% end %>
               </div>
               <div class="card-body">
-                <ul class="list-unstyled" data-controller="sortable" data-sortable-params-name-value=".task-card">
+                <ul class="list-unstyled" data-controller="sortable" data-sortable-params-name-value=".task-card" data-board-id="<%= @board.id %>">
                   <% list.tasks.each do |task| %>
                     <li data-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
                       <div class="card task-card">

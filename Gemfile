@@ -34,13 +34,14 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'devise'
-
+gem "importmap-rails", "~> 1.2"
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'image_processing', '~> 1.12'
 gem 'cocoon'
 gem 'acts_as_list'
+gem 'foreman', github: 'ddollar/foreman'
 
 
 
@@ -66,4 +67,4 @@ group :development do
 end
 
 
-gem "importmap-rails", "~> 1.2"
+

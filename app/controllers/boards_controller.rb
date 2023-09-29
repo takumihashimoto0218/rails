@@ -30,14 +30,16 @@ class BoardsController < ApplicationController
       redirect_to boards_path
     else
       render :edit
-    end  
+    end
   end
 
   def update_task_order
-    binding.pry
     task = Task.find(params[:task_id])
-    task.update!(position: params[:position])
-    head :ok
+    if task.update(position: params[:position])
+      render json: { message: 'タスクの並び替えに成功しました。' }
+    else
+      render json: { error: task.errors.full_messages.join(", ") }, status: 422
+    end
   end
 
   private
@@ -55,12 +57,10 @@ class BoardsController < ApplicationController
     def set_topic
       @pack = Pack.find_by(id: params[:pack_id])
       return if @pack.nil?
-    
       begin
         @topic_json = PackWrapper.fetch_topics(@pack)
       rescue StandardError => e
         flash[:alert] = "エラーが発生しました: #{e.message}"
       end
     end
-    
 end
