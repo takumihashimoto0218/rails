@@ -5,7 +5,7 @@
             <div class="mr-3">
                 <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
             </div>
-            <a href="/boards/<%= @board.id %>/edit" class="btn btn-lg btn-block btn-warning  w-20">編集</a>
+            <%= link_to '編集', edit_board_path(@board.hashid), class: 'btn btn-lg btn-block btn-warning w-20' %>
         </div>
     </div>
 </section>
