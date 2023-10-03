@@ -35,6 +35,16 @@
                             <h4><%= link_to task.title, task_path(task) %></h4>
                           <% end %>
                         </div>
+                        <% if user_signed_in? %>
+                          <p id="favorite_button_<%= task.id %>">
+                            <%= render partial: "task_favorites/task_favorites", locals: {task: task} %>
+                          </p>
+                        <% else %>
+                          <p data-bs-toggle="modal" data-bs-target="#signUpModal">
+                            <i class="bi bi-heart"></i>
+                            <%= task.task_favorites.count %>
+                          </p>
+                        <% end %>
                       </div>
                     </li>
                   <% end %>
