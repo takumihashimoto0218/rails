@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     post 'favorite', to: 'favorites#create'
     delete 'favorite', to: 'favorites#destroy'
   end
+
+  resources :tasks do
+    resource :task_favorites, only: [:create, :destroy]
+  end
   resources :tasks
   resource :profile, only: [:new, :create,:show, :edit, :update]
   resources :packs
