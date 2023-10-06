@@ -5,7 +5,7 @@
             <div class="mr-3">
                 <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
             </div>
-            <a href="/boards/<%= @board.id %>/edit" class="btn btn-lg btn-block btn-warning  w-20">編集</a>
+            <%= link_to '編集', edit_board_path(@board), class: 'btn btn-lg btn-block btn-warning w-20' %>
         </div>
     </div>
 </section>
@@ -25,19 +25,19 @@
               </div>
               <div class="card-body">
                 <ul class="list-unstyled" data-controller="sortable" data-sortable-params-name-value=".task-card" data-board-id="<%= @board.id %>">
-                    <% list.tasks.order(:position).each do |task| %>
-                        <li data-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
-                            <div class="card task-card">
-                                <div class="card-body bg-white">
-                                    <% if task.title.nil? %>
-                                        <%= link_to "タスクを追加する", edit_board_path(@board) %>
-                                    <% else %>
-                                        <h4><%= link_to task.title, task_path(task) %></h4>
-                                    <% end %>
-                                </div>
-                            </div>
-                        </li>
-                    <% end %>
+                  <% list.tasks.order(:position).each do |task, index| %>
+                    <li data-task-id="<%= task.id %>" data-position="<%= index %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
+                      <div class="card task-card">
+                        <div class="card-body bg-white">
+                          <% if task.title.nil? %>
+                            <%= link_to "タスクを追加する", edit_board_path(@board) %>
+                          <% else %>
+                            <h4><%= link_to task.title, task_path(task) %></h4>
+                          <% end %>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
             </div>
