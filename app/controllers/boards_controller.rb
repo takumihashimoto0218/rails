@@ -1,6 +1,8 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update]
   before_action :set_topic, only: [:new, :create]
+  before_action :validate_security_token, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @boards = Board.all
@@ -61,6 +63,12 @@ class BoardsController < ApplicationController
         @topic_json = PackWrapper.fetch_topics(@pack)
       rescue StandardError => e
         flash[:alert] = "エラーが発生しました: #{e.message}"
+      end
+    end
+
+    def validate_security_token
+      unless @board.security_token == params[:token]
+        redirect_to boards_path, alert: '不正なアクセスです。'
       end
     end
 end
