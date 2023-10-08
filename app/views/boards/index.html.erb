@@ -15,7 +15,7 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li><%= board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></li>
             </ul>
-            <%= link_to "詳細", board_path(board.hashid, token: board.security_token), class: "btn btn-lg btn-block btn-warning link-black" %>
+            <%= link_to "詳細", board_path(board.hashid), class: "btn btn-lg btn-block btn-warning link-black" %>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
                 <%= render partial: "favorites/favorites", locals: {board: board} %>

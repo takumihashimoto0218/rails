@@ -24,7 +24,8 @@ Admin.create!(
 4.times do |n|
   board = Board.create!(
     title: "Board Title #{n}",
-    body: "Board Body #{n}"
+    body: "Board Body #{n}",
+    user_id: rand(1..4)
   )
 
   2.times do |m|

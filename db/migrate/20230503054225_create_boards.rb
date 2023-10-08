@@ -4,7 +4,7 @@ class CreateBoards < ActiveRecord::Migration[7.0]
       t.string :title,        null: false
       t.string :body,        null: false
       t.boolean :status
-      t.string :security_token, null: false
+      t.integer :user_id,     null: false
 
       t.timestamps
     end

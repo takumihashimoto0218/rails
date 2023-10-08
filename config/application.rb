@@ -29,6 +29,7 @@ module TopicTodo
     # in config/environments, which are processed later.
     #
     config.time_zone = 'Tokyo'
+    config.i18n.default_locale = :ja
 # 
     # config.eager_load_paths << Rails.root.join("extras")
 
