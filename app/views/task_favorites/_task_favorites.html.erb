@@ -1,0 +1,11 @@
+<% if current_user.already_task_favorited?(task) %>
+  <%= button_to task_task_favorites_path(task.id), method: :delete, remote: true, data: {"turbolinks" => false} do %>
+    <i class="fa-solid fa-heart fa-lg"></i> <!-- ここでfa-lgを追加 -->
+  <% end %>
+  <%= task.task_favorites.count %>
+<% else %>
+  <%= button_to task_task_favorites_path(task.id), method: :post, remote: true, data: {"turbolinks" => false} do %>
+    <i class="fa-regular fa-heart fa-lg"></i> <!-- ここでfa-lgを追加 -->
+  <% end %>
+  <%= task.task_favorites.count %>
+<% end %>

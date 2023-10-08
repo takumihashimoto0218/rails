@@ -5,4 +5,5 @@ class Task < ApplicationRecord
   validates :title, presence: true, length: {maximum: 50}
   validates :body, length: {maximum: 1800}
   acts_as_list scope: :list
+  has_many :task_favorites, dependent: :destroy
 end

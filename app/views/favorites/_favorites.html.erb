@@ -1,11 +1,11 @@
 <% if current_user.already_favorited?(board) %>
   <%= button_to board_favorite_path(board), method: :delete, remote: true, data: {"turbolinks" => false} do %>
-    <i class="fa-solid fa-heart fa-lg"></i> <!-- ここでfa-lgを追加 -->
+    <i class="fa-solid fa-heart fa-lg"></i>
   <% end %>
   <%= board.favorites.count %>
 <% else %>
   <%= button_to board_favorite_path(board), method: :post, remote: true, data: {"turbolinks" => false} do %>
-    <i class="fa-regular fa-heart fa-lg"></i> <!-- ここでfa-lgを追加 -->
+    <i class="fa-regular fa-heart fa-lg"></i>
   <% end %>
   <%= board.favorites.count %>
 <% end %>
