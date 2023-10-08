@@ -1,42 +1,34 @@
 <h4 class="text-center mb-4">編集画面</h4>
 
-<%= form_with model: @board do |f| %>
-  <div class="container bg-light p-5 rounded custom-border mb-4">
-    <div class="row mb-4">
-      <div class="col-md-6 mb-3">
-        <%= f.label :title, class: 'form-label' %>
-        <%= f.text_field :title, class: 'form-control' %>
-      </div>
-      <div class="col-md-6">
-        <%= f.label :body, class: 'form-label' %>
-        <%= f.text_area :body, class: 'form-control' %>
-      </div>
+<%= form_with model: @board, html: { class: 'custom-border rounded p-4' } do |f| %>
+  <div class="row m-5 p-5">
+    <div class="mb-3">
+      <%= f.label :title, class: 'form-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
     </div>
-    <div class="row">
-      <%= f.fields_for :lists do |list| %>
-        <div class="col-md-6 mb-4">
-          <div class="card bg-light p-4 rounded custom-border">
-            <div class="mb-3">
-              <%= list.label :list_title, class: 'form-label' %>
-              <%= list.text_field :title, class: 'form-control' %>
-            </div>
-            <%= list.fields_for :tasks do |task| %>
-              <div class="mb-3">
-                <%= task.label :task_title, class: 'form-label' %>
-                <%= task.text_field :title, class: 'form-control' %>
-              </div>
-              <div class="mb-3">
-                <%= task.label :task_body, class: 'form-label' %>
-                <%= task.text_area :body, class: 'form-control' %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>  
-    </div>
-    <div class="mt-4 text-end">  
-      <%= f.submit 'ボードを編集する', class: 'btn btn-warning' %>
+    <div class="mb-3">
+      <%= f.label :body, class: 'form-label' %>
+      <%= f.text_area :body, class: 'form-control' %>
     </div>
   </div>
-<% end %> 
+
+  <div id="lists" class="row">
+    <%= f.fields_for :lists do |list| %>
+      <div class="card mb-4 p-3 custom-border rounded">
+        <%= render "list_fields", f: list %>
+      </div>
+    <% end %>
+    <div id="detail-association-insertion-point"></div>
+    <div class="links mb-4">
+      <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
+    </div>
+  </div>
+
+  <div class="box-newusr mt-4 text-end">
+      <input type="submit" name="commit" value="ボードを編集する" data-disable-with="ボードを編集する" class="btn btn-warning" />
+  </div>
+<% end %>
+
+
+
 

@@ -1,4 +1,3 @@
-// create-board.js
 document.addEventListener('DOMContentLoaded', () => {
   const createBoardButton = $('#create-board-button').get(0);
   const packId = $('[data-pack-id]').data('pack-id');
