@@ -5,7 +5,7 @@ class Board < ApplicationRecord
   validates :body, length: {maximum: 1000}
   has_many :favorites, dependent: :destroy
   include Hashid::Rails
-  before_create :generate_security_token
+  belongs_to :user
 
   def self.board_new(pack, topics)
     board = Board.new
@@ -21,8 +21,4 @@ class Board < ApplicationRecord
     board
   end
 
-  private
-    def generate_security_token
-      self.security_token = SecureRandom.hex(10)
-    end
 end
