@@ -25,8 +25,8 @@
               </div>
               <div class="card-body">
                 <ul class="list-unstyled" data-controller="sortable" data-sortable-params-name-value=".task-card" data-board-id="<%= @board.id %>">
-                  <% list.tasks.each do |task| %>
-                    <li data-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
+                  <% list.tasks.order(:position).each do |task, index| %>
+                    <li data-task-id="<%= task.id %>" data-position="<%= index %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
                       <div class="card task-card">
                         <div class="card-body bg-white">
                           <% if task.title.nil? %>

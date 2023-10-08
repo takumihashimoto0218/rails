@@ -16,7 +16,6 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "sortablejs", to: "https://ga.jspm.io/npm:sortablejs@1.15.0/modular/sortable.esm.js"
 pin "@hotwired/turbo", to: "https://ga.jspm.io/npm:@hotwired/turbo@7.3.0/dist/turbo.es2017-esm.js"
-pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.2.2/dist/stimulus.js"
 
 pin "@rails/actioncable/src", to: "https://ga.jspm.io/npm:@rails/actioncable@7.0.8/src/index.js"
 pin "stimulus", to: "https://ga.jspm.io/npm:stimulus@3.2.2/dist/stimulus.js"
