@@ -19,9 +19,6 @@ Profile.create(
 Admin.create!(
   email: 'admin@gmail.com',
   password: 'testtest'
-<<<<<<< Updated upstream
-)
-=======
 )
 
 4.times do |n|
@@ -56,4 +53,3 @@ end
     )
   end
 end
->>>>>>> Stashed changes
