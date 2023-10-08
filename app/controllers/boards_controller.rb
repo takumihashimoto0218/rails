@@ -1,6 +1,8 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
   before_action :set_topic, only: [:new, :create]
+  before_action :validate_security_token, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @boards = Board.all
@@ -27,7 +29,7 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update!(board_params)
-      redirect_to boards_path
+      redirect_to board_path(@board)
     else
       render :edit
     end
@@ -39,12 +41,12 @@ class BoardsController < ApplicationController
   end
 
   def update_task_order
-    task = Task.find(params[:task_id])
-    if task.update(position: params[:position])
-      render json: { message: 'タスクの並び替えに成功しました。' }
-    else
-      render json: { error: task.errors.full_messages.join(", ") }, status: 422
+    tasks = params[:tasks]
+    tasks.each do |task_data|
+      task = Task.find(task_data[:id])
+      task.update(position: task_data[:position])
     end
+    render json: { message: 'タスクの位置を更新しました。' }
   end
 
   private
@@ -66,6 +68,12 @@ class BoardsController < ApplicationController
         @topic_json = PackWrapper.fetch_topics(@pack)
       rescue StandardError => e
         flash[:alert] = "エラーが発生しました: #{e.message}"
+      end
+    end
+
+    def validate_security_token
+      unless @board.security_token == params[:token]
+        redirect_to boards_path, alert: '不正なアクセスです。'
       end
     end
 end

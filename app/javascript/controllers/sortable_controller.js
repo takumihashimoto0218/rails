@@ -8,7 +8,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log("Connected to Sortable!");
     this.initializeSortable();
   }
 
@@ -18,32 +17,24 @@ export default class extends Controller {
     }
 
     this.sortable = Sortable.create(this.element, {
-      onStart: this.onStart.bind(this),
-      onChange: this.onChange.bind(this),
       onEnd: this.onEnd.bind(this),
       group: this.groupValue,
     });
   }
 
-  onStart(event) {
-    console.log("スタート");
-  }
-
-  onChange(event) {
-    console.log("場所移動しました。");
-  }
-
   onEnd(event) {
-    console.log("Sortable onEnd triggered!");
-    console.log("Board ID from dataset:", this.element.dataset.boardId);
-
-    let taskId = event.item.dataset.id;
-    let newPosition = event.newIndex;
+    console.log(event)
+    const updatedTasks = Array.from(event.from.children).map((taskElement, index) => {
+      return {
+        id: parseInt(taskElement.dataset.taskId, 10),
+        position: index + 1
+      };
+    });
+    console.log(updatedTasks)
 
     const request = new FetchRequest("PATCH", `/boards/${this.element.dataset.boardId}/update_task_order`, {
       body: JSON.stringify({
-        task_id: taskId,
-        position: newPosition
+        tasks: updatedTasks
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -54,14 +45,12 @@ export default class extends Controller {
     request.perform()
       .then(response => {
         if(response.ok) {
-          console.log(response)
-          return response.json();
+          return response.responseJson;
         } else {
           throw new Error("Server error");
         }
       })
       .then(data => {
-        console.log(data.message);
         this.initializeSortable();
       })
       .catch(error => {
