@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update]
+  before_action :set_board, only: [:show, :edit, :update, :destroy]
   before_action :set_topic, only: [:new, :create]
   before_action :validate_security_token, only: [:show, :edit, :update, :destroy]
 
@@ -33,6 +33,11 @@ class BoardsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+  @board.destroy
+  redirect_to boards_path, notice: 'ボードを削除しました', status: :see_other
   end
 
   def update_task_order

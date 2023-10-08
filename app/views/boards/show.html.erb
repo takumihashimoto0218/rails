@@ -6,6 +6,7 @@
                 <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
             </div>
             <%= link_to '編集', edit_board_path(@board.hashid, token: @board.security_token), class: 'btn btn-lg btn-block btn-warning w-20' %>
+            <%= link_to "削除", board_path(@board),data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn ttn-lg btn-block btn-warning w-20" %>           
         </div>
     </div>
 </section>
