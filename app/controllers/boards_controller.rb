@@ -27,16 +27,19 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update!(board_params)
-      redirect_to boards_path
+      redirect_to board_path(@board)
     else
       render :edit
-    end  
+    end
   end
 
   def update_task_order
-    task = Task.find(params[:task_id])
-    task.update!(position: params[:position])
-    head :ok
+    tasks = params[:tasks]
+    tasks.each do |task_data|
+      task = Task.find(task_data[:id])
+      task.update(position: task_data[:position])
+    end
+    render json: { message: 'タスクの位置を更新しました。' }
   end
 
   private
@@ -54,12 +57,10 @@ class BoardsController < ApplicationController
     def set_topic
       @pack = Pack.find_by(id: params[:pack_id])
       return if @pack.nil?
-    
       begin
         @topic_json = PackWrapper.fetch_topics(@pack)
       rescue StandardError => e
         flash[:alert] = "エラーが発生しました: #{e.message}"
       end
     end
-    
 end

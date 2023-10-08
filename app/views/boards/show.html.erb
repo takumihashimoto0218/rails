@@ -1,17 +1,14 @@
 <section class="jumbotron text-center jumbotron-board">
-    <div class="container d-flex align-items-center justify-content-between"> 
+    <div class="container d-flex align-items-center justify-content-between">
         <h1 class="jumbotron-heading"><%= @board.title %></h1>
         <div class="d-flex align-items-center">
             <div class="mr-3">
                 <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
             </div>
-            <a href="/boards/<%= @board.id %>/edit" class="btn btn-lg btn-block btn-warning  w-20">編集</a>
+            <%= link_to '編集', edit_board_path(@board), class: 'btn btn-lg btn-block btn-warning w-20' %>
         </div>
     </div>
 </section>
-
-
-
 
 <div class="album bg-light-yellow text-center">
     <div class="container">
@@ -27,9 +24,9 @@
                 <% end %>
               </div>
               <div class="card-body">
-                <ul class="list-unstyled" data-controller="sortable" data-sortable-handle-value=".task-card">
-                  <% list.tasks.each do |task| %>
-                    <li data-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board, task_id: task.id) %>">
+                <ul class="list-unstyled" data-controller="sortable" data-sortable-params-name-value=".task-card" data-board-id="<%= @board.id %>">
+                  <% list.tasks.order(:position).each do |task, index| %>
+                    <li data-task-id="<%= task.id %>" data-position="<%= index %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
                       <div class="card task-card">
                         <div class="card-body bg-white">
                           <% if task.title.nil? %>
