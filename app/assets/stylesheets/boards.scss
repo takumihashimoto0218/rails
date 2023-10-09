@@ -6,7 +6,7 @@
 }
 
 .card-header {
-  background-color: #9f903b
+  background-color: $border-color
 }
 
 .link-black {
@@ -25,11 +25,11 @@
     color: $border-color;
   }
 }
-.card {
+.common-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.common-card:hover {
   transform: scale(1.05);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
 }
