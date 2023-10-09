@@ -1,7 +1,6 @@
-<div class="nested-fields bg-orange p-4 rounded mb-4 custom-border">
-  <hr>
-  <div class="mb-3">
-    <%= f.label :list_title, class: 'form-label' %>
+<div class="nested-fields bg-white p-4 rounded mb-4 custom-border">
+  <div class="mb-1">
+    <%= f.label :list_title, class: 'form-label mb-1' %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
   <%= link_to_remove_association "Remove List", f, class: 'btn btn-warning mb-3' %>
@@ -14,4 +13,5 @@
     <%= link_to_add_association "+Taskを追加", f, :tasks, class: 'btn btn-warning' %>
   </div>
 </div>
+
 

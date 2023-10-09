@@ -1,31 +1,43 @@
-<%= form_with model: @board, html: { class: 'custom-border rounded p-4' } do |f| %>
-  <div class="row m-5 p-5">
-    <div class="mb-3">
-      <%= f.label :title, class: 'form-label' %>
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
-    <div class="mb-3">
-      <%= f.label :body, class: 'form-label' %>
-      <%= f.text_area :body, class: 'form-control' %>
-    </div>
-  </div>
-
-  <div id="lists" class="row">
-    <%= f.fields_for :lists do |list| %>
-      <div class="card mb-4 p-3 custom-border rounded">
-        <%= render "list_fields", f: list %>
+<div class="container" style="max-width: 70%;">
+  <%= form_with model: @board, local: true do |f| %>
+    <% if @board.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
+        <ul>
+          <% @board.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
-    <div id="detail-association-insertion-point"></div>
-    <div class="links mb-4">
-      <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
-    </div>
-  </div>
 
-  <div class="box-newusr mt-4 text-end">
-      <input type="submit" name="commit" value="ボードを作成する" data-disable-with="ボードを作成する" class="btn btn-warning" />
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+
+    <div id="lists" class="row d-flex">
+      <%= f.fields_for :lists do |list| %>
+        <div class="card mb-1 p-3" style="border: none;"> <!-- Updated margin and removed custom-border -->
+          <%= render "list_fields", f: list %>
+        </div>
+      <% end %>
+      <div id="detail-association-insertion-point"></div>
+      <div class="links mb-4">
+        <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
 
 
 
