@@ -18,3 +18,18 @@
  @import 'font-awesome';
  @import "boards";
 
+
+ .bg-color {
+  background-color: $bg-color;
+}
+
+ .common-card {
+  background-color: $card-color;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.common-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
