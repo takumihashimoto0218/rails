@@ -1,5 +1,4 @@
 class Pack < ApplicationRecord
-  # has_many :tasks, dependent: :destroy
   validates :title, presence: true, length: {maximum: 30}
   has_many :packdetails, dependent: :destroy
   accepts_nested_attributes_for :packdetails, allow_destroy: true
