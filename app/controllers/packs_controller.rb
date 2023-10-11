@@ -3,14 +3,14 @@ require "uri"
 require "json"
 
 class PacksController < ApplicationController
- 
+
   before_action :set_pack, only: [:show, :edit, :update]
-  before_action :set_topic, only: [:show]
- 
+  before_action :set_topic, only: [:show, :edit, :update]
+
   def index
     @packs = Pack.all
   end
-  
+
   def show
   end
 
@@ -26,7 +26,7 @@ class PacksController < ApplicationController
       redirect_to packs_path, notice: "投稿しました"
     else
       render :new
-      return #繰り返しrenderが呼び出されないように
+      return
     end
   end
 
@@ -34,19 +34,17 @@ class PacksController < ApplicationController
   end
 
   def update
-    update_modified_pack_params = Pack.update_modified_packdetails(pack_params)
-    if @pack.update!(update_modified_pack_params)
+    if @pack.update(pack_params)
       redirect_to pack_path(@pack)
     else
       render :edit
       return
     end
   end
-  
 
-  private 
+  private
     def pack_params
-      params.require(:pack).permit(:title, packdetails_attributes:[:id, :topic_id ])
+      params.require(:pack).permit(:title, packdetails_attributes:[:id, :topic_id, :_destroy])
     end
 
     def set_pack

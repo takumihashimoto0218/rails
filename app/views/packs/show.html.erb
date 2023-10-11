@@ -13,11 +13,12 @@
           <%= link_to "編集", edit_pack_path(@pack), class: "btn btn-warning" %>
           <button id="create-board-button" data-pack-id="<%= @pack.id %>" class="btn btn-primary">パックからボードを作成</button>
         </div>
-        <%= javascript_include_tag 'create-board' %>
       </div>
+      <%= javascript_include_tag 'create-board' %>
     </div>
   </div>
 </div>
+
 
 
 
