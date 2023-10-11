@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :task_favorites, dependent: :destroy
+  has_many :boards, dependent: :destroy
 
   def already_favorited?(board)
     self.favorites.exists?(board_id: board.id)
@@ -13,3 +14,4 @@ class User < ApplicationRecord
     self.task_favorites.exists?(task_id: task.id)
   end
 end
+

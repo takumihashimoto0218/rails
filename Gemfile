@@ -42,6 +42,7 @@ gem 'image_processing', '~> 1.12'
 gem 'cocoon'
 gem 'acts_as_list'
 gem 'hashid-rails'
+gem 'rails-i18n'
 
 
 gem 'font-awesome-sass'

@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        blank: "を入力してください"
+        taken: "はすでに存在します"
+        invalid: "は不正な値です"
