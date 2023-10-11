@@ -1,13 +1,24 @@
 <section class="jumbotron text-center jumbotron-board">
   <div class="container d-flex align-items-center justify-content-between">
-    <h1 class="jumbotron-heading"><%= @board.title %></h1>
+    <div class="d-flex align-items-start">
+      <div class="mr-3">
+        <img class="card-img-top rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="User Icon" style="width: 100px; height: 100px; border-radius: 50%;">
+      </div>
+      <div class="text-left mt-3">
+        <h4><%= @board.user.profile.name %></h4>
+        <p><%= @board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></p>
+      </div>
+    </div>
+    <h1 class="jumbotron-heading flex-grow-1 text-center"><%= @board.title %></h1>
     <div class="d-flex align-items-center">
       <div class="mr-3">
         <i class="fa-solid fa-heart" style="font-size: 2.0em;"></i><%= @board.favorites.count %>
       </div>
       <% if user_signed_in? && @board.user_id == current_user.id %>
-        <%= link_to '編集', edit_board_path(@board), class: 'btn btn-lg btn-block btn-warning w-20' %>
-        <%= link_to "削除", board_path(@board), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-lg btn-block btn-warning w-20" %>
+        <div class="d-flex">
+          <%= link_to '編集', edit_board_path(@board), class: 'btn btn-warning mr-2' %>
+          <%= link_to "削除", board_path(@board), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -18,7 +29,7 @@
     <div class="row">
       <% @board.lists.each do |list| %>
         <div class="col-md-4 mb-4">
-          <div class="card">
+          <div class="common-card shadow">
             <div class="card-header bg-sandybrown">
               <h4 class="list-title"><%= list.title %></h4>
             </div>
@@ -27,19 +38,19 @@
                 <% list.tasks.order(:position).each do |task| %>
                   <li data-task-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
                     <div class="card task-card">
-                      <div class="card-body bg-white">
-                        <h4><%= link_to task.title, task_path(task) %></h4>
+                      <div class="card-body bg-white d-flex align-items-center justify-content-between">
+                        <h4 class="flex-grow-1 mb-0"><%= link_to task.title, task_path(task) %></h4>
+                        <% if user_signed_in? %>
+                          <div id="favorite_button_<%= task.id %>">
+                            <%= render partial: "task_favorites/task_favorites", locals: {task: task} %>
+                          </div>
+                        <% else %>
+                          <div class="text-center">
+                            <i class="bi bi-heart"></i>
+                            <div><%= task.task_favorites.count %></div>
+                          </div>
+                        <% end %>
                       </div>
-                      <% if user_signed_in? %>
-                        <p id="favorite_button_<%= task.id %>">
-                          <%= render partial: "task_favorites/task_favorites", locals: {task: task} %>
-                        </p>
-                      <% else %>
-                        <p data-bs-toggle="modal" data-bs-target="#signUpModal">
-                          <i class="bi bi-heart"></i>
-                          <%= task.task_favorites.count %>
-                        </p>
-                      <% end %>
                     </div>
                   </li>
                 <% end %>

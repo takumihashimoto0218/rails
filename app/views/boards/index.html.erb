@@ -1,32 +1,29 @@
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">ボード一覧</h1>
-</div>
-<div class="container">
-<div class="container">
-  <div class="d-flex flex-wrap justify-content-start">
-    <% @boards.each do |board| %>
-      <div class="card-deck mb-3 text-center mr-3">
-        <div class="card mb-4 shadow-sm">
-          <div class="card-header">
-              <h3 class="my-0 font-weight-normal"><%= board.title %></h3>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title pricing-card-title"><%= board.body %></h5>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li><%= board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></li>
-            </ul>
-            <%= link_to "詳細", board_path(board.hashid), class: "btn btn-lg btn-block btn-warning link-black" %>
+<div class="row mt-5">
+  <% @boards.each do |board| %>
+    <div class="col-lg-4 mb-4">
+      <div class="common-card shadow">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
+          <!-- 画像は仮のもの -->
+          <img class="card-img-top rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 70px; height: 70px; border-radius: 50%;">
+        </div>
+        <div class="card-body text-center">
+          <h3 class="card-title"><%= board.title %></h3>
+          <p class="card-text"><%= board.body %></p>
+          <%= link_to "詳細", board_path(board.hashid), class: "btn btn-warning mb-2" %>
+          <div>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
                 <%= render partial: "favorites/favorites", locals: {board: board} %>
               </p>
             <% else %>
-                <i class="bi bi-heart"></i>
-                <%= board.favorites.count %>
+              <i class="bi bi-heart"></i>
+              <%= board.favorites.count %>
             <% end %>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
+
+
