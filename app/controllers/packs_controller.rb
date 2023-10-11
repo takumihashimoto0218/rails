@@ -4,7 +4,7 @@ require "json"
 
 class PacksController < ApplicationController
 
-  before_action :set_pack, only: [:show, :edit, :update]
+  before_action :set_pack, only: [:show, :edit, :update, :destroy]
   before_action :set_topic, only: [:show, :edit, :update]
 
   def index
@@ -40,6 +40,11 @@ class PacksController < ApplicationController
       render :edit
       return
     end
+  end
+
+  def destroy
+    @pack.destroy
+    redirect_to packs_path, notice: "パックを削除しました"
   end
 
   private

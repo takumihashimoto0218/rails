@@ -11,6 +11,7 @@
         <% end %>
         <div class="d-flex justify-content-between mt-4">
           <%= link_to "編集", edit_pack_path(@pack), class: "btn btn-warning" %>
+          <%= link_to "削除", pack_path(@pack), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
           <button id="create-board-button" data-pack-id="<%= @pack.id %>" class="btn btn-primary">パックからボードを作成</button>
         </div>
       </div>
