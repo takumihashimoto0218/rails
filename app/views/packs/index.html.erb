@@ -2,15 +2,15 @@
   <h1 class="display-4">パック一覧</h1>
 </div>
 
-<div class="card-group">
-  <div class="flex w-100">
+<div class="container">
+  <div class="row">
     <% @packs.each do |pack| %>
-      <div class="col-sm-6">
-        <div class="card m-5">
-          <div class="card-body">
-            <h5 class="card-title">パック名：<%= pack.title %></h5>
-            <p class="card-text"><%= pack.packdetails.first.topic_id %></p>
-            <%= link_to "詳細", pack_path(pack), class: "btn" %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="common-card shadow bg-light">
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= pack.title %></h5>
+            <p class="text-muted"><%= pack.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></p>
+            <%= link_to "詳細", pack_path(pack), class: "btn btn-primary mt-2" %>
           </div>
         </div>
       </div>

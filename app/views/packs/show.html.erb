@@ -1,16 +1,23 @@
-<h1>パック詳細画面</h1>
-<h4 class="display-4 m-4">
-<%= @pack.title %>
-</h4>
-<div class="group d-flex m-4">
-  <div class="flex-row m-5">
-    <% @topics.each do |topic| %>
-      企画タイトル<h4><%= topic["title"] %></h4>
-      <%= topic["id"] %>
-    <% end %>
+<div class="container">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow bg-light p-4 text-center">
+        <h2><%= @pack.title %></h2>
+        <h5><%= @pack.created_at.strftime("%Y年%m月%d日 %H:%M") %></h5>
+        <% @topics.each do |topic| %>
+          <div class="card shadow bg-gray-100 p-3 my-2 text-center">
+            <h6><%= topic["title"] %></h6>
+          </div>
+        <% end %>
+        <div class="d-flex justify-content-between mt-4">
+          <%= link_to "編集", edit_pack_path(@pack), class: "btn btn-warning" %>
+          <button id="create-board-button" data-pack-id="<%= @pack.id %>" class="btn btn-primary">パックからボードを作成</button>
+        </div>
+        <%= javascript_include_tag 'create-board' %>
+      </div>
+    </div>
   </div>
-  <%= link_to "編集", edit_pack_path(@pack) %>
-  <button id="create-board-button" data-pack-id="<%= @pack.id %>">パックからボードを作成</button>
-  <%= javascript_include_tag 'create-board' %>
-
 </div>
+
+
+
