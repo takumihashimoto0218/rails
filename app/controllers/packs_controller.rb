@@ -38,7 +38,7 @@ class PacksController < ApplicationController
 
   def update
     if @pack.update(pack_params)
-      redirect_to pack_path(@pack)
+      redirect_to pack_path(@pack), notice: "パックを更新しました"
     else
       render :edit
       return
