@@ -42,7 +42,7 @@ Admin.create!(
   end
 end
 
-5.times do |n|
+10.times do |n|
   pack = Pack.create!(
     title: "PackTitle#{n+1}"
   )
