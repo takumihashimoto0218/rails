@@ -9,7 +9,7 @@
         <div class="card-body text-center">
           <h3 class="card-title"><%= board.title %></h3>
           <p class="card-text"><%= board.body %></p>
-          <%= link_to "詳細", board_path(board.hashid), class: "btn btn-warning mb-2" %>
+          <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn btn-warning mb-2" %>
           <div>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
@@ -24,6 +24,11 @@
       </div>
     </div>
   <% end %>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <div class="btn-white text-black">
+    <%= custom_pagy_nav(@pagy) %>
+  </div>
 </div>
 
 

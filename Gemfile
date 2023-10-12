@@ -43,6 +43,7 @@ gem 'cocoon'
 gem 'acts_as_list'
 gem 'hashid-rails'
 gem 'rails-i18n'
+gem 'pagy'
 
 
 gem 'font-awesome-sass'

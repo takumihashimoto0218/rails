@@ -10,10 +10,15 @@
           <div class="card-body text-center">
             <h5 class="card-title"><%= pack.title %></h5>
             <p class="text-muted"><%= pack.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></p>
-            <%= link_to "詳細", pack_path(pack), class: "btn btn-primary mt-2" %>
+            <%= link_to "詳細", pack_path(pack, page: params[:page]), class: "btn btn-primary mt-2" %>
           </div>
         </div>
       </div>
     <% end %>
+  </div>
+</div>
+<div class="d-flex justify-content-center mt-4">
+  <div class="btn-white text-black">
+    <%= custom_pagy_nav(@pagy) %>
   </div>
 </div>

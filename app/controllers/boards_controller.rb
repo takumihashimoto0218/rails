@@ -5,6 +5,7 @@ class BoardsController < ApplicationController
 
   def index
     @boards = Board.all
+    @pagy, @boards = pagy(@boards, items: 6)
   end
 
   def show
