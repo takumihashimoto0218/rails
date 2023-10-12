@@ -1,4 +1,7 @@
-<h4 class="text-center mb-4">編集画面</h4>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4>編集画面</h4>
+  <%= link_to "戻る", board_path(@board.hashid), class: "btn btn-warning" %>
+</div>
 
 <%= form_with model: @board, html: { class: 'custom-border rounded p-4' } do |f| %>
   <div class="row m-5 p-5">
@@ -28,7 +31,3 @@
       <input type="submit" name="commit" value="ボードを編集する" data-disable-with="ボードを編集する" class="btn btn-warning" />
   </div>
 <% end %>
-
-
-
-
