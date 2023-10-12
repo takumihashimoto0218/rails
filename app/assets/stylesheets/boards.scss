@@ -1,0 +1,29 @@
+
+// board.scss
+@import "color";
+.bg-color {
+  background-color: $bg-color;
+}
+
+.card-header {
+  background-color: $border-color
+}
+
+.link-black {
+  color: $black;
+}
+
+.link-black:hover {
+  color: $border-color;
+}
+
+
+// ## リプレイス
+.task-card h4 a {
+  color: black;
+  &:hover {
+    color: $border-color;
+  }
+}
+
+

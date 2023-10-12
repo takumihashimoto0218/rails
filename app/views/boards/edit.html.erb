@@ -1,31 +1,33 @@
-<h4>編集画面</h4>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4>編集画面</h4>
+  <%= link_to "戻る", board_path(@board.hashid), class: "btn btn-warning" %>
+</div>
 
-  <%= form_with model: @board do |f| %>
-    <div class="row m-5 p-5">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      <%= f.label :body %>
-      <%= f.text_area :body %>
+<%= form_with model: @board, html: { class: 'custom-border rounded p-4' } do |f| %>
+  <div class="row m-5 p-5">
+    <div class="mb-3">
+      <%= f.label :title, class: 'form-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
     </div>
-    <div class="row">
-        <%= f.fields_for :lists do |list| %>
-          <div class="card">
-            <div class="field mt-5">
-              <%= list.label :list_title %>
-              <%= list.text_field :title %><br>
-            </div>
-            <%= list.fields_for :tasks do |task| %>
-              <div class="field mt-20">
-                <%= task.label :task_title %>
-                <%= task.text_field :title %>
-                <%= task.label :task_body %>
-                <%= task.text_area :body %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>  
+    <div class="mb-3">
+      <%= f.label :body, class: 'form-label' %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div id="lists" class="row">
+    <%= f.fields_for :lists do |list| %>
+      <div class="card mb-4 p-3 custom-border rounded">
+        <%= render "list_fields", f: list %>
       </div>
-    <div class="mt-4 text-end">  
-      <%= f.submit 'ボードを編集する' %>
+    <% end %>
+    <div id="detail-association-insertion-point"></div>
+    <div class="links mb-4">
+      <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
     </div>
-  <% end %>
+  </div>
+
+  <div class="box-newusr mt-4 text-end">
+      <input type="submit" name="commit" value="ボードを編集する" data-disable-with="ボードを編集する" class="btn btn-warning" />
+  </div>
+<% end %>

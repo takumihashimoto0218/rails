@@ -3,34 +3,20 @@ require "uri"
 require "json"
 
 class PacksController < ApplicationController
-  before_action :set_pack, only: [:show, :edit, :update]
+
+  before_action :set_pack, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show, :edit, :update]
+  before_action :set_previous_pack, only: [:show]
+  before_action :set_next_pack, only: [:show]
+
+
   def index
     @packs = Pack.all
+    @pagy, @packs = pagy(@packs, items: 12)
   end
-  
+
   def show
-    uris = @pack.packdetails.map { |packdetail| URI("https://hanatane.jp/api/v1/topics/#{packdetail.topic_id}") }
-    @topics = []
-  
-    begin
-      uris.each do |uri|
-        https = Net::HTTP.new(uri.host, uri.port)
-        https.use_ssl = true
-  
-        request = Net::HTTP::Get.new(uri)
-        response = https.request(request)
-  
-        if response.is_a?(Net::HTTPSuccess)
-          @topics << JSON.parse(response.body)["topic"]
-        else
-          flash[:alert] = "There was an error retrieving the topics."
-        end
-      end
-    rescue StandardError => e
-      flash[:alert] = "An unexpected error occurred: #{e.message}"
-    end
   end
-    
 
   def new
     @pack = Pack.new
@@ -44,7 +30,7 @@ class PacksController < ApplicationController
       redirect_to packs_path, notice: "投稿しました"
     else
       render :new
-      return #繰り返しrenderが呼び出されないように
+      return
     end
   end
 
@@ -52,22 +38,41 @@ class PacksController < ApplicationController
   end
 
   def update
-    update_modified_pack_params = Pack.update_modified_packdetails(pack_params)
-    if @pack.update!(update_modified_pack_params)
-      redirect_to pack_path(@pack)
+    if @pack.update(pack_params)
+      redirect_to pack_path(@pack), notice: "パックを更新しました"
     else
       render :edit
       return
     end
   end
-  
 
-  private 
+  def destroy
+    @pack.destroy
+    redirect_to packs_path, notice: "パックを削除しました"
+  end
+
+  private
     def pack_params
-      params.require(:pack).permit(:name, packdetails_attributes:[:id, :topic_id ])
+      params.require(:pack).permit(:title, packdetails_attributes:[:id, :topic_id, :_destroy])
     end
 
     def set_pack
       @pack = Pack.find(params[:id])
+    end
+
+    def set_topic
+      begin
+        @topics = PackWrapper.fetch_topics(@pack)
+      rescue StandardError => e
+        flash[:alert] = e.message
+      end
+    end
+
+    def set_previous_pack
+      @previous_pack = Pack.where("id < ?", @pack.id).last
+    end
+
+    def set_next_pack
+      @next_pack = Pack.where("id > ?", @pack.id).first
     end
 end

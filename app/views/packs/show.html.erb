@@ -1,13 +1,51 @@
-<h1>パック詳細画面</h1>
-<h4 class="display-4 m-4">
-<%= @pack.name %>
-</h4>
-<div class="group d-flex m-4">
-  <div class="flex-row m-5">
-    <% @topics.each do |topic| %>
-      企画タイトル<h4><%= topic["title"] %></h4>
-      <%= topic["id"] %>
-    <% end %>
+<div class="container w-100">
+  <div class="row justify-content-center mb-5">
+    <div class="col-lg-8 col-md-12">
+      <div class="d-flex justify-content-between align-items-start pt-md-5 pb-md-4">
+        <h1><%= @pack.title %></h1>
+        <div>
+          <%= link_to "戻る", packs_path(page: params[:page]), class: "btn btn-warning mr-2" %>
+          <button id="create-board-button" data-pack-id="<%= @pack.id %>" class="btn btn-primary">パックからボードを作成</button>
+        </div>
+      </div>
+      <div class="text-left mb-5">
+        <h5><%= @pack.created_at.strftime("%Y年%m月%d日 %H:%M") %></h5>
+      </div>
+      <div class="row">
+        <% @topics.each do |topic| %>
+          <div class="col-md-4 mb-4">
+            <div class="common-card shadow bg-light h-100">
+              <div class="card-body text-center d-flex align-items-center justify-content-center" style="height: 150px;">
+                <h6 class="card-title mb-0"><%= topic["title"] %></h6>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-between mt-4 align-items-center">
+        <div>
+          <%= link_to "編集", edit_pack_path(@pack), class: "btn btn-warning mr-2" %>
+          <%= link_to "削除", pack_path(@pack), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-danger mr-2" %>
+        </div>
+        <div>
+          <% if @previous_pack %>
+            <%= link_to pack_path(@previous_pack) do %>
+              <i class="fa-solid fa-caret-left fa-2x"></i>
+            <% end %>
+          <% else %>
+            <i class="fa-solid fa-caret-left fa-2x"></i>
+          <% end %>
+
+          <% if @next_pack %>
+            <%= link_to pack_path(@next_pack) do %>
+              <i class="fa-solid fa-caret-right fa-2x"></i>
+            <% end %>
+          <% else %>
+            <i class="fa-solid fa-caret-right fa-2x"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= link_to "編集", edit_pack_path(@pack) %>
+  <%= javascript_include_tag 'create-board' %>
 </div>

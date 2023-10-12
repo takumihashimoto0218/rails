@@ -1,26 +1,43 @@
-<h4>ボード新規投稿画面</h4>
-<%= form_with model: @board do |f| %>
-  <div class="row m-5 p-5">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <div class="row m-5 p-5">
-    <% 2.times do |i| %>
-      <%= f.fields_for "lists_attributes[#{i}]", @board.lists.build do |list| %>
-        <%= list.label :list_title %>
-        <%= list.text_field :title %>
-        <% 2.times do |j| %>
-          <%= list.fields_for "tasks_attributes[#{j}]", @boards.tasks.build  do |task| %>
-            <%= task.label :task_title %>
-            <%= task.text_field :title %>
-            <%= task.label :task_body %>
-            <%= task.text_area :body %>
-          <% end %>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3>ボード投稿画面</h3>
+  <%= link_to "戻る", boards_path, class: "btn btn-warning" %>
+</div>
+
+<%= form_with model: @board, local: true do |f| %>
+  <% if @board.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
+      <ul>
+        <% @board.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-      <% end %>  
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div id="lists" class="row d-flex">
+    <%= f.fields_for :lists do |list| %>
+      <div class="card mb-4 p-3 custom-border mr-3">
+        <%= render "list_fields", f: list %>
+      </div>
     <% end %>
-  </div>  
-  <%= f.submit 'ボードを作成する' %>
+    <div id="detail-association-insertion-point"></div>
+    <div class="links mb-4">
+      <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
 <% end %>

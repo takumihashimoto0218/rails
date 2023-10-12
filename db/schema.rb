@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_15_061131) do
+
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_084736) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -38,7 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_061131) do
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
-
+  
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_061131) do
     t.string "title", null: false
     t.string "body", null: false
     t.boolean "status"
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -82,7 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_061131) do
   end
 
   create_table "packs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,12 +97,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_061131) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "task_favorites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false
     t.integer "diffculty_level"
     t.boolean "is_solo"
     t.bigint "list_id", null: false
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
