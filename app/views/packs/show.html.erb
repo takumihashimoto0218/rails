@@ -21,6 +21,23 @@
     </div>
   </div>
   <div class="text-right">
-    <%= link_to "戻る", packs_path, class: "btn btn-warning" %>
+    <% if @previous_pack %>
+      <%= link_to pack_path(@previous_pack) do %>
+        <i class="fa-solid fa-caret-left fa-2x"></i>
+      <% end %>
+    <% else %>
+      <i class="fa-solid fa-caret-left fa-2x"></i>
+    <% end %>
+  
+    <% if @next_pack %>
+      <%= link_to pack_path(@next_pack) do %>
+        <i class="fa-solid fa-caret-right fa-2x"></i>
+      <% end %>
+    <% else %>
+      <i class="fa-solid fa-caret-right fa-2x"></i>
+    <% end %>
+  </div>
+  <div class="text-left">
+     <%= link_to "戻る", packs_path, class: "btn btn-warning" %>
   </div>
 </div>

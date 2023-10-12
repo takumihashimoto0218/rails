@@ -6,6 +6,9 @@ class PacksController < ApplicationController
 
   before_action :set_pack, only: [:show, :edit, :update, :destroy]
   before_action :set_topic, only: [:show, :edit, :update]
+  before_action :set_previous_pack, only: [:show]
+  before_action :set_next_pack, only: [:show]
+
 
   def index
     @packs = Pack.all
@@ -62,5 +65,13 @@ class PacksController < ApplicationController
       rescue StandardError => e
         flash[:alert] = e.message
       end
+    end
+
+    def set_previous_pack
+      @previous_pack = Pack.where("id < ?", @pack.id).last
+    end
+
+    def set_next_pack
+      @next_pack = Pack.where("id > ?", @pack.id).first
     end
 end
