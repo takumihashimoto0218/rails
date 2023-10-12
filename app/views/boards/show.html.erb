@@ -63,5 +63,5 @@
   </div>
 </div>
 <div class="text-right">
-  <%= link_to "戻る", boards_path(page: params[:page]), class: "btn btn-warning" %>
+  <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
 </div>

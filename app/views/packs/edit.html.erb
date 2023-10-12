@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 70%;">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h4>パック編集画面</h4>
-    <%= link_to "戻る", pack_path(@pack), class: "btn btn-warning" %>
+    <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
   </div>
 
   <%= form_with model: @pack, local: true do |f| %>
