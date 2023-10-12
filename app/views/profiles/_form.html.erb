@@ -4,6 +4,8 @@
     <%= f.text_field :name %>
     <div class=" mb-3 mt-5"><%= f.label :self_introduction %></div>
     <%= f.text_area :self_introduction %>
+    <div class=" mb-3 mt-5"><%= f.label :profile_image %></div>
+    <%= f.file_field :profile_image %>
   </div>
   <div class="mt-4 text-end">
     <%= f.submit %>
