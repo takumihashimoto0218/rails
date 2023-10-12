@@ -12,6 +12,7 @@ class PacksController < ApplicationController
 
   def index
     @packs = Pack.all
+    @pagy, @packs = pagy(@packs, items: 12)
   end
 
   def show
