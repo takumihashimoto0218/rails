@@ -21,7 +21,7 @@ Admin.create!(
   password: 'testtest'
 )
 
-4.times do |n|
+20.times do |n|
   board = Board.create!(
     title: "Board Title #{n}",
     body: "Board Body #{n}",
@@ -42,7 +42,7 @@ Admin.create!(
   end
 end
 
-10.times do |n|
+20.times do |n|
   pack = Pack.create!(
     title: "PackTitle#{n+1}"
   )
