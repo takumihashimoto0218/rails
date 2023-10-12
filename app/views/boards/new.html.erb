@@ -1,3 +1,8 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3>ボード投稿画面</h3>
+  <%= link_to "戻る", boards_path, class: "btn btn-warning" %>
+</div>
+
 <%= form_with model: @board, local: true do |f| %>
   <% if @board.errors.any? %>
     <div id="error_explanation">
@@ -36,4 +41,3 @@
     <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
-
