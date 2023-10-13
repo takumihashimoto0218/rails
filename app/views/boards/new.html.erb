@@ -3,7 +3,7 @@
   <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
 </div>
 
-<%= form_with model: @board, local: true do |f| %>
+<%= form_with(model: @board, local: true, data: { turbo: "false" }) do |f| %>
   <% if @board.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
