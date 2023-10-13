@@ -3,7 +3,7 @@
     <div class="col-lg-4 mb-4">
       <div class="common-card shadow">
         <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
-          <% if board.user.profile.profile_image.attached? %>
+          <% if board.user&.profile&.profile_image&.attached? %>
             <%= image_tag board.user.profile.profile_image.variant(resize_to_fill: [100, 100]), alt: "User Icon", class: "rounded-circle" %>
           <% else %>
             <%= image_tag "default_profile.webp", alt: "Default User Icon", class: "rounded-circle", style: "width: 70px; height: 70px;" %>
