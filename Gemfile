@@ -34,6 +34,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'devise'
+gem 'rails-i18n'
 gem "importmap-rails", "~> 1.2"
 gem 'bootstrap'
 gem 'jquery-rails'
