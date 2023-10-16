@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 70%;">
   <div class="d-flex justify-content-between text-align-center">
     <h4>パック登録画面</h4>
-    <%= link_to "戻る", packs_path, class: "btn btn-warning" %>
+    <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
   </div>
 
   <%= form_with model: @pack, local: true do |f| %>
