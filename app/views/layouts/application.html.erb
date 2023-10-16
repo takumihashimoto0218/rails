@@ -19,13 +19,7 @@
 
   <body>
     <%= render 'shared/header' %>
-    <div class="text-center">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
-          <%= value %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'users/shared/flash_messages' %>
     <%= yield %>
   </body>
 </html>

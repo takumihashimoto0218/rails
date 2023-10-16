@@ -19,20 +19,9 @@
 
   <body>
     <%= render "shared/header" %>
+    <%= render 'users/shared/flash_messages' %>
 
     <div class="container is-max-desktop mt-5">
-      <% if flash[:notice] %>
-        <div class="notification is-primary is-light flash notice-flash">
-          <p class="notice is-size-5"><%= notice %></p>
-        </div>
-      <% end %>
-
-      <% if flash[:alert] %>
-        <div class="notification is-danger is-light flash alert-flash">
-          <p class="alert is-size-5"><%= alert %></p>
-        </div>
-      <% end %>
-
       <body class="bg-color">
         <%= yield %>
       </body>
