@@ -34,7 +34,7 @@ class BoardsController < ApplicationController
 
   def update
     if @board.update(board_params)
-      redirect_to board_path(@board), notice: "ボードを更新しました"
+      redirect_to board_path(@board), success: "ボードを更新しました"
     else
       render :edit
     end

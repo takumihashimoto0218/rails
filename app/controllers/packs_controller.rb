@@ -29,6 +29,7 @@ class PacksController < ApplicationController
     if @pack.save
       redirect_to packs_path, notice: "投稿しました"
     else
+      flash.now[:alert] = @pack.errors.full_messages.join(", ")
       render :new
       return
     end
