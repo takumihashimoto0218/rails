@@ -3,8 +3,11 @@
     <div class="col-lg-4 mb-4">
       <div class="common-card shadow">
         <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
-          <!-- 画像は仮のもの -->
-          <img class="card-img-top rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 70px; height: 70px; border-radius: 50%;">
+          <% if board.user.profile.profile_image.attached? %>
+            <%= image_tag board.user.profile.profile_image.variant(resize_to_fill: [100, 100]), alt: "User Icon", class: "rounded-circle" %>
+          <% else %>
+            <%= image_tag "default_profile.webp", alt: "Default User Icon", class: "rounded-circle", style: "width: 70px; height: 70px;" %>
+          <% end %>
         </div>
         <div class="card-body text-center">
           <h3 class="card-title"><%= board.title %></h3>
@@ -30,5 +33,6 @@
     <%= custom_pagy_nav(@pagy) %>
   </div>
 </div>
+
 
 

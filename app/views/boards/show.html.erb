@@ -2,7 +2,11 @@
   <div class="container d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-start">
       <div class="mr-3">
-        <img class="card-img-top rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="User Icon" style="width: 100px; height: 100px; border-radius: 50%;">
+        <% if @board.user.profile.profile_image.attached? %>
+          <%= image_tag @board.user.profile.profile_image.variant(resize: "100x100"), alt: "User Icon", class: "rounded-circle" %>
+        <% else %>
+          <%= image_tag "default_profile.webp", alt: "Default User Icon", style: "width: 100px; height: 100px;" %>
+        <% end %>
       </div>
       <div class="text-left mt-3">
         <h4><%= @board.user.profile.name %></h4>
@@ -23,6 +27,7 @@
     </div>
   </div>
 </section>
+
 
 <div class="album bg-light-yellow text-center">
   <div class="container">
