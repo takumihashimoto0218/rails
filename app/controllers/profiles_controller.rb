@@ -2,8 +2,9 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update]
 
   def show
+    @pagy, @boards = pagy(@profile.user.boards, items: 12)
   end
-  
+
   def new
     @profile = Profile.new
   end
@@ -14,7 +15,7 @@ class ProfilesController < ApplicationController
       redirect_to boards_path, notice: 'プロフィールを登録しました'
     else
       render :new
-    end  
+    end
   end
 
   def edit
