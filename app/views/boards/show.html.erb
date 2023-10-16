@@ -43,15 +43,15 @@
                   <li data-task-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
                     <div class="card task-card">
                       <div class="card-body bg-white d-flex align-items-center justify-content-between">
-                        <h4 class="flex-grow-1 mb-0"><%= link_to task.title, task_path(task) %></h4>
+                        <h4 class="flex-grow-1"><%= link_to task.title, task_path(task) %></h4>
                         <% if user_signed_in? %>
-                          <div id="favorite_button_<%= task.id %>">
+                          <div id="favorite_button_<%= task.id %>" class="d-flex align-items-center">
                             <%= render partial: "task_favorites/task_favorites", locals: {task: task} %>
                           </div>
                         <% else %>
-                          <div class="text-center">
+                          <div class="text-center d-flex align-items-center">
                             <i class="bi bi-heart"></i>
-                            <div><%= task.task_favorites.count %></div>
+                            <div class="ml-1 text-dark"><%= task.task_favorites.count %></div>
                           </div>
                         <% end %>
                       </div>
