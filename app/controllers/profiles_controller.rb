@@ -2,7 +2,9 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update]
 
   def show
-    @pagy, @boards = pagy(@profile.user.boards, items: 12)
+    if @profile
+      @pagy, @boards = pagy(@profile.user.boards, items: 12)
+    end
   end
 
   def new
