@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>話のタネコレクション</title>
@@ -18,8 +17,13 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <%= render 'users/shared/flash_messages' %>
-    <%= yield %>
+     <div class="container is-max-desktop mt-5">
+      <body class="bg-color" style="margin-top: 70px;">
+        <%= yield %>
+      </body>
+      <%= render 'users/shared/footer' %>
+    </div>
   </body>
 </html>

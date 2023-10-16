@@ -1,12 +1,49 @@
-<nav class="pt-3 mx-3">
-  <a class="p-2 text-dark">話の種コレクション</a>
-  <a class="p-2 text-dark" href="#"><%= link_to "ボード一覧", boards_path %></a>
-  <a class="p-2 text-dark" href="#"><%= link_to "ボード投稿", new_board_path %></a>
-  <% if user_signed_in? %>
-    <a class="p-2 text-dark" href="#"><%= link_to "プロフィール", profile_path %></a>
-    <a class="p-2 text-dark" href="#"><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %></a>
-  <% else %>
-    <a class="p-2 text-dark" href="#"> <%= link_to "ログイン", new_user_session_path %></a>
-    <a class="p-2 text-dark" href="#"><%= link_to "新規登録", new_user_registration_path %></a>
-  <% end %>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark mb-5">
+  <a class="navbar-brand mr-auto mr-lg-0" href="#">
+    <span class="font-weight-bold rounded-pill">話のタネコレクション</span>
+  </a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "ボード一覧", boards_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ボード投稿", new_board_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "パック一覧", packs_path, class: "nav-link" %>
+      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "プロフィール", profile_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+        </li>
+      <% end %>
+      <% if admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "パック投稿", new_pack_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'ログアウト', destroy_admin_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
 </nav>
