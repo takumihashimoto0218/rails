@@ -1,19 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const createBoardButton = $('#create-board-button').get(0);
-  const packId = $('[data-pack-id]').data('pack-id');
 
   createBoardButton.addEventListener('click', () => {
-    const form = $('<form>');
-    form.prop('method', 'GET');
-    form.prop('action', '/boards/new');
+    const packId = $('[data-pack-id]').data('pack-id');
+    const currentPage = $('[data-page]').data('page');
 
-    $('<input>', {
-      type: 'hidden',
-      name: 'pack_id',
-      value: packId
-    }).appendTo(form);
+    const url = `/boards/new?pack_id=${packId}&page=${currentPage}`;
 
-    form.appendTo('body');
-    form.submit();
+    window.location.href = url;
   });
 });
+

@@ -5,7 +5,7 @@
         <h1><%= @pack.title %></h1>
         <div>
           <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
-          <button id="create-board-button" data-pack-id="<%= @pack.id %>" class="btn btn-primary">パックからボードを作成</button>
+         <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn btn-primary">パックからボードを作成</button>
         </div>
       </div>
       <div class="text-left mb-5">
