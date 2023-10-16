@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_084736) do
     t.string "title", null: false
     t.string "body", null: false
     t.boolean "status"
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
