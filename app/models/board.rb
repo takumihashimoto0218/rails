@@ -5,7 +5,7 @@ class Board < ApplicationRecord
   validates :body, length: {maximum: 1000}
   has_many :favorites, dependent: :destroy
   include Hashid::Rails
-  belongs_to :user
+  belongs_to :user, optional: true
 
   def self.board_new(pack, topics)
     board = Board.new

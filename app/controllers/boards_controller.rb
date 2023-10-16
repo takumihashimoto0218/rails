@@ -12,11 +12,15 @@ class BoardsController < ApplicationController
   end
 
   def new
-    @board = Board.board_new(@pack,@topic_json)
+    @board = Board.board_new(@pack, @topic_json)
   end
 
   def create
-    @board = Board.new(board_params.merge(user_id: current_user.id))
+    @board = Board.new(board_params)
+    if user_signed_in?
+      @board.user_id = current_user.id
+    end
+
     if @board.save
       redirect_to boards_path, notice: 'ボードが投稿されました'
     else
@@ -51,12 +55,12 @@ class BoardsController < ApplicationController
   end
 
   private
+
   def board_params
-    params.require(:board).permit(:title, :body, lists_attributes: [:id,:title,:_destroy,
-      tasks_attributes: [:id,:title, :body, :diffculty_level, :is_solo,:_destroy, :position]
-    ]).merge(user_id: current_user.id)
+    params.require(:board).permit(:title, :body, lists_attributes: [:id, :title, :_destroy,
+      tasks_attributes: [:id, :title, :body, :diffculty_level, :is_solo, :_destroy, :position]
+    ])
   end
-  
 
   def set_board
     @board = Board.find(params[:id])
@@ -69,7 +73,7 @@ class BoardsController < ApplicationController
   end
 
   def correct_user
-    unless @board.user_id == current_user.id
+    if @board.user_id && @board.user_id != current_user&.id
       flash[:alert] = "アクセス権限がありません。"
       redirect_to boards_path
     end
