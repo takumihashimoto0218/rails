@@ -27,25 +27,25 @@
           <%= link_to "編集", edit_pack_path(@pack), class: "btn btn-warning mr-2" %>
           <%= link_to "削除", pack_path(@pack), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-danger mr-2" %>
         </div>
-        <div>
-          <% if @previous_pack %>
-            <%= link_to pack_path(@previous_pack) do %>
-              <i class="fa-solid fa-caret-left fa-2x"></i>
-            <% end %>
-          <% else %>
-            <i class="fa-solid fa-caret-left fa-2x"></i>
-          <% end %>
-
-          <% if @next_pack %>
-            <%= link_to pack_path(@next_pack) do %>
-              <i class="fa-solid fa-caret-right fa-2x"></i>
-            <% end %>
-          <% else %>
-            <i class="fa-solid fa-caret-right fa-2x"></i>
-          <% end %>
-        </div>
       </div>
     </div>
   </div>
   <%= javascript_include_tag 'create-board' %>
+</div>
+<div class="d-flex justify-content-between w-70">
+  <% if @previous_pack %>
+    <%= link_to  pack_path(@previous_pack) do %>
+      <i class="fa-solid fa-caret-left fa-2x"></i>
+    <% end %>
+  <% else %>
+    <i class="fa-solid fa-caret-left fa-2x"></i>
+  <% end %>
+
+  <% if @next_pack %>
+    <%= link_to pack_path(@next_pack) do %>
+      <i class="fa-solid fa-caret-right fa-2x"></i>
+    <% end %>
+  <% else %>
+    <i class="fa-solid fa-caret-right fa-2x"></i>
+  <% end %>
 </div>
