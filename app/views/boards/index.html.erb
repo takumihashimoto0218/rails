@@ -2,28 +2,26 @@
   <% @boards.each do |board| %>
     <div class="col-lg-4 mb-4">
       <div class="common-card shadow">
-        <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
-          <% if board.user&.profile&.profile_image&.attached? %>
-            <%= image_tag board.user.profile.profile_image.variant(resize_to_fill: [100, 100]), alt: "User Icon", class: "rounded-circle" %>
-          <% else %>
-            <%= image_tag "default_profile.webp", alt: "Default User Icon", class: "rounded-circle", style: "width: 70px; height: 70px;" %>
-          <% end %>
-        </div>
-        <div class="card-body text-center">
-          <h3 class="card-title"><%= board.title %></h3>
-          <p class="card-text"><%= board.body %></p>
-          <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn btn-warning mb-2" %>
-          <div>
-            <% if user_signed_in? %>
-              <p id="favorite_button_<%= board.id %>">
-                <%= render partial: "favorites/favorites", locals: {board: board} %>
-              </p>
+        <%= link_to board_path(board.hashid, page: params[:page]), class: "card-link text-dark" do %>
+          <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
+            <% if board.user&.profile&.profile_image&.attached? %>
+              <%= image_tag board.user.profile.profile_image.variant(resize_to_fill: [100, 100]), alt: "User Icon", class: "rounded-circle" %>
             <% else %>
-              <i class="bi bi-heart"></i>
-              <%= board.favorites.count %>
+              <%= image_tag "default_profile.webp", alt: "Default User Icon", class: "rounded-circle", style: "width: 70px; height: 70px;" %>
             <% end %>
           </div>
-        </div>
+          <div class="card-body text-center">
+            <h3 class="card-title"><%= board.title %></h3>
+            <p class="card-text">
+              <% if user_signed_in? %>
+                <%= render partial: "favorites/favorites", locals: {board: board} %>
+              <% else %>
+                <i class="bi bi-heart"></i>
+                <%= board.favorites.count %>
+              <% end %>
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -33,6 +31,3 @@
     <%= custom_pagy_nav(@pagy) %>
   </div>
 </div>
-
-
-
