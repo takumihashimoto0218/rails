@@ -16,14 +16,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
-  <body>
+  <body class="bg-color" style="margin-top: 70px;">
     <%= render "shared/header" %>
     <%= render 'users/shared/flash_messages' %>
-     <div class="container is-max-desktop mt-5">
-      <body class="bg-color" style="margin-top: 70px;">
+    <div class=" is-max-desktop mt-5">
+      <div>
         <%= yield %>
-      </body>
-      <%= render 'users/shared/footer' %>
+      </div>
     </div>
+    <%= render 'users/shared/footer' %>
   </body>
 </html>
