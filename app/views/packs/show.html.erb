@@ -5,7 +5,7 @@
         <h1><%= @pack.title %></h1>
         <div>
           <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
-         <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn btn-primary">パックからボードを作成</button>
+         <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn btn-warning">パックからボードを作成</button>
         </div>
       </div>
       <div class="text-left mb-5">
@@ -34,7 +34,7 @@
 </div>
 <div class="d-flex justify-content-between w-70">
   <% if @previous_pack %>
-    <%= link_to pack_path(@previous_pack) do %>
+    <%= link_to pack_path(@previous_pack), style: "text-decoration: none;" do %>
       <div class="text-center" style="color: black;">
         <i class="fa-solid fa-caret-left fa-2x"></i>
         <br>
@@ -50,7 +50,7 @@
   <% end %>
 
   <% if @next_pack %>
-    <%= link_to pack_path(@next_pack) do %>
+    <%= link_to pack_path(@next_pack), style: "text-decoration: none;" do %>
       <div class="text-center" style="color: black;">
         <i class="fa-solid fa-caret-right fa-2x"></i>
         <br>
@@ -62,7 +62,6 @@
       <i class="fa-solid fa-caret-right fa-2x"></i>
       <br>
       次のパックへ
-      </div>
+    </div>
   <% end %>
 </div>
-
