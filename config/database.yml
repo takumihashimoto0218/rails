@@ -52,5 +52,6 @@ test:
 production:
   <<: *default
   database: topic_todo_production
-  username: topic_todo
-  password: <%= ENV["TOPIC_TODO_DATABASE_PASSWORD"] %>
+  username: <%= Rails.application.credentials.dig(:db, :user) %>
+  password: <%= Rails.application.credentials.dig(:db, :password) %>
+  socket: /var/lib/mysql/mysql.sock
