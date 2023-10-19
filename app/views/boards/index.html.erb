@@ -11,7 +11,6 @@
         </div>
         <div class="card-body text-center">
           <h3 class="card-title"><%= board.title %></h3>
-          <p class="card-text"><%= board.body %></p>
           <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn btn-warning mb-2" %>
           <div>
             <% if user_signed_in? %>
