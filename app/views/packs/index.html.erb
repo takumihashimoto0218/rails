@@ -7,11 +7,12 @@
     <% @packs.each do |pack| %>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="common-card shadow bg-light">
-          <div class="card-body text-center">
-            <h5 class="card-title"><%= pack.title %></h5>
-            <p class="text-muted"><%= pack.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></p>
-            <%= link_to "詳細", pack_path(pack, page: params[:page]), class: "btn btn-primary mt-2" %>
-          </div>
+          <%= link_to pack_path(pack, page: params[:page]), class: "card-link text-dark" do %>
+            <div class="card-body text-center">
+              <h5 class="card-title"><%= pack.title %></h5>
+              <p class="text-muted"><%= pack.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></p>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
