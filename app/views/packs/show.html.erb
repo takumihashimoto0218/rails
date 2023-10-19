@@ -34,18 +34,35 @@
 </div>
 <div class="d-flex justify-content-between w-70">
   <% if @previous_pack %>
-    <%= link_to  pack_path(@previous_pack) do %>
-      <i class="fa-solid fa-caret-left fa-2x"></i>
+    <%= link_to pack_path(@previous_pack) do %>
+      <div class="text-center" style="color: black;">
+        <i class="fa-solid fa-caret-left fa-2x"></i>
+        <br>
+        前のパックへ
+      </div>
     <% end %>
   <% else %>
-    <i class="fa-solid fa-caret-left fa-2x"></i>
+    <div class="text-center" style="color: lightgrey;">
+      <i class="fa-solid fa-caret-left fa-2x"></i>
+      <br>
+      前のパックへ
+    </div>
   <% end %>
 
   <% if @next_pack %>
     <%= link_to pack_path(@next_pack) do %>
-      <i class="fa-solid fa-caret-right fa-2x"></i>
+      <div class="text-center" style="color: black;">
+        <i class="fa-solid fa-caret-right fa-2x"></i>
+        <br>
+        次のパックへ
+      </div>
     <% end %>
   <% else %>
-    <i class="fa-solid fa-caret-right fa-2x"></i>
+    <div class="text-center" style="color: lightgrey;">
+      <i class="fa-solid fa-caret-right fa-2x"></i>
+      <br>
+      次のパックへ
+      </div>
   <% end %>
 </div>
+
