@@ -2,6 +2,11 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_board, only: [:create, :destroy]
 
+  def index
+    favorites = Favorite.where(user_id: current_user.id).pluck(:board_id)
+    @favorite_boards = Board.find(favorites)
+  end
+
   def create
     @favorite = @board.favorites.build(user: current_user)
     if @favorite.save
