@@ -5,13 +5,18 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show]
   end
-  
+
   resources :boards do
     member do
       patch :update_task_order
     end
     post 'favorite', to: 'favorites#create'
     delete 'favorite', to: 'favorites#destroy'
+  end
+
+  resources :users do
+    resources :favorites, only: [:index]
+    resources :task_favorites, only: [:index]
   end
 
   resources :tasks do
