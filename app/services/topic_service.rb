@@ -1,4 +1,4 @@
-class TopicService < BaseService
+class TopicService
   def self.get_topics(page: 1)
     
     uri = URI("https://hanatane.jp/api/v1/topics")
