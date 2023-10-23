@@ -1,12 +1,11 @@
-<div class="nested-fields field mt-4 bg-light p-4 rounded mb-4 custom-border">
+<div class="nested-fields field mt-4 bg-light p-4 rounded mb-4 shadow-sm">
   <div class="mb-3">
-    <%= f.label :task_title, class: 'form-label' %>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.label :task_title, "タスクタイトル", class: 'font-weight-bold' %>
+    <%= f.text_field :title, class: 'form-control', placeholder: 'タスクのタイトルを入力' %>
   </div>
   <div class="mb-3">
-    <%= f.label :task_body, class: 'form-label' %>
-    <%= f.text_area :body, class: 'form-control' %>
+    <%= f.label :task_body, "タスクの内容", class: 'font-weight-bold' %>
+    <%= f.text_area :body, class: 'form-control', rows: '5', placeholder: 'タスクの詳細を記述' %>
   </div>
   <%= link_to_remove_association "Remove Task", f, class: 'btn btn-warning mb-3' %>
 </div>
-

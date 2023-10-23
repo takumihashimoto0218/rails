@@ -1,29 +1,42 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h4>編集画面</h4>
-  <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
-</div>
-
-<%= form_with model: @board, html: { class: 'custom-border rounded p-4' } do |f| %>
-  <div class="row m-5 p-5">
-    <div class="mb-3">
-      <%= f.label :title, class: 'form-label' %>
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h2>編集画面</h2>
+    <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning ml-3" %>
   </div>
 
-  <div id="lists" class="row">
-    <%= f.fields_for :lists do |list| %>
-      <div class="card mb-4 p-3 custom-border rounded">
-        <%= render "list_fields", f: list %>
+  <%= form_with model: @board, local: true, html: { class: 'custom-border rounded p-4' }, data: { turbo: "false" } do |f| %>
+
+    <div class="form-group">
+      <%= f.label :title, class: "font-weight-bold" %>
+      <%= f.text_field :title, class: 'form-control', placeholder: 'ボードのタイトルを入力' %>
+    </div>
+
+    <div id="lists" class="row">
+      <div class="col-md-6 text-center">
+        <%= f.fields_for :lists do |list| %>
+          <div class="card p-4 m-2 custom-border rounded">
+            <%= render "list_fields", f: list %>
+          </div>
+        <% end %>
+        <div class="links mb-4">
+          <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-warning' %>
+        </div>
       </div>
-    <% end %>
-    <div id="detail-association-insertion-point"></div>
-    <div class="links mb-4">
-      <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-light' %>
-    </div>
-  </div>
 
-  <div class="box-newusr mt-4 text-end">
-      <input type="submit" name="commit" value="ボードを編集する" data-disable-with="ボードを編集する" class="btn btn-warning" />
-  </div>
-<% end %>
+      <div class="col-md-6 text-center">
+        <%= f.fields_for :lists do |list| %>
+          <div class="card p-4 m-2 custom-border rounded">
+            <%= render "list_fields", f: list %>
+          </div>
+        <% end %>
+        <div class="links mb-4">
+          <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-warning' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-4 text-center">
+      <%= f.submit 'ボードを編集する', class: 'btn btn-warning btn-lg' %>
+    </div>
+  <% end %>
+</div>

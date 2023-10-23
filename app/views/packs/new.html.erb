@@ -1,26 +1,43 @@
-<div class="container" style="max-width: 70%;">
-  <div class="d-flex justify-content-between text-align-center">
-    <h4>パック登録画面</h4>
-    <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h2>パック登録画面</h2>
+    <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning ml-3" %>
   </div>
 
   <%= form_with(model: @pack, local: true, data: { turbo: "false" }) do |f| %>
+
     <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.label :title, class: "font-weight-bold" %>
+      <%= f.text_field :title, class: 'form-control', placeholder: 'パックのタイトルを入力' %>
     </div>
 
-    <div id="packdetails">
-      <%= f.fields_for :packdetails do |packdetail| %>
-        <%= render 'packdetail_fields', f: packdetail %>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn btn-light' %>
+    <div id="packdetails" class="row">
+      <div class="col-md-6 text-center">
+        <%= f.fields_for :packdetails do |packdetail| %>
+          <div class="card p-4 m-2 custom-border rounded">
+            <%= render 'packdetail_fields', f: packdetail %>
+          </div>
+        <% end %>
+        <div class="links mb-4">
+          <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn btn-warning' %>
+        </div>
+      </div>
+
+      <div class="col-md-6 text-center">
+        <%= f.fields_for :packdetails do |packdetail| %>
+          <div class="card p-4 m-2 custom-border rounded">
+            <%= render 'packdetail_fields', f: packdetail %>
+          </div>
+        <% end %>
+        <div class="links mb-4">
+          <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn btn-warning' %>
+        </div>
       </div>
     </div>
 
-    <div class="form-group mt-4 text-end">
-      <%= f.submit 'パックを登録する', class: 'btn btn-primary' %>
+    <div class="form-group mt-4 text-center">
+      <%= f.submit 'パックを登録する', class: 'btn btn-warning btn-lg' %>
     </div>
   <% end %>
 </div>
+
