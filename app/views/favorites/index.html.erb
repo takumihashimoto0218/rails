@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4>いいねしたボード一覧</h4>
+  <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @favorite_boards.each do |favorite| %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="common-card shadow bg-light">
+          <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
+            <% if favorite.user&.profile&.profile_image&.attached? %>
+              <%= image_tag favorite.user.profile.profile_image.variant(resize_to_fill: [100, 100]), alt: "User Icon", class: "rounded-circle" %>
+            <% else %>
+              <%= image_tag "default_profile.webp", alt: "Default User Icon", class: "rounded-circle", style: "width: 70px; height: 70px;" %>
+            <% end %>
+          </div>
+          <%= link_to board_path(favorite), class: "card-link text-dark" do %>
+            <div class="card-body text-center">
+              <h5 class="card-title"><%= favorite.title %></h5>
+            </div>
+          <% end %>
+          <div class="card-body text-center">
+              いいね数<%= favorite.favorites.count %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
