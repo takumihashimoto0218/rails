@@ -18,10 +18,10 @@ when "development"
     ]
   )
 
-  # Admin.create!(
-  #   email: 'admin@gmail.com',
-  #   password: 'testtest'
-  # )
+  Admin.create!(
+    email: 'admin@gmail.com',
+    password: 'testtest'
+  )
 
   20.times do |n|
     board = Board.create!(
