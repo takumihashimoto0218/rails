@@ -12,26 +12,30 @@
     </div>
 
     <div id="lists" class="row">
-      <div class="col-md-6 text-center">
-        <%= f.fields_for :lists do |list| %>
-          <div class="card p-4 m-2 custom-border">
-            <%= render "list_fields", f: list %>
+      <% list_count = 0 %>
+      <%= f.fields_for :lists do |list| %>
+        <% if list_count.even? %><div class="w-100"></div><% end %>
+        <div class="col-md-6 mb-4">
+          <div class="nested-fields bg-white p-4 rounded shadow-sm">
+            <div class="mb-3">
+              <%= list.label :list_title, "リストタイトル", class: 'font-weight-bold mb-2' %>
+              <%= list.text_field :title, class: 'form-control', placeholder: 'リストのタイトルを入力' %>
+            </div>
+            <%= link_to_remove_association "Remove List", list, class: 'btn btn-warning mb-3' %>
+            <div id="tasks" class="mt-3">
+              <%= list.fields_for :tasks do |task| %>
+                <%= render "task_fields", f: task %>
+              <% end %>
+            </div>
+            <div class="links mt-3">
+              <%= link_to_add_association "+Taskを追加", list, :tasks, class: 'btn btn-warning' %>
+            </div>
           </div>
-        <% end %>
-        <div class="links mb-4">
-          <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-warning' %>
         </div>
-      </div>
-
-      <div class="col-md-6 text-center">
-        <%= f.fields_for :lists do |list| %>
-          <div class="card p-4 m-2 custom-border">
-            <%= render "list_fields", f: list %>
-          </div>
-        <% end %>
-        <div class="links mb-4">
-          <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-warning' %>
-        </div>
+        <% list_count += 1 %>
+      <% end %>
+      <div class="links mb-4 text-center col-md-12">
+        <%= link_to_add_association "+Listを追加", f, :lists, class: 'btn btn-warning' %>
       </div>
     </div>
 
@@ -40,3 +44,5 @@
     </div>
   <% end %>
 </div>
+
+
