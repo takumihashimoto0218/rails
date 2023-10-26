@@ -6,5 +6,9 @@
     "sortablejs": "^1.15.0",
     "stimulus": "^3.2.2",
     "stimulus-sortable": "^4.1.1"
-  }
+  },
+    "scripts": {
+      "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+      "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+   }
 }
