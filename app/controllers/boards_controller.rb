@@ -63,7 +63,16 @@ class BoardsController < ApplicationController
   end
 
   def set_board
-    @board = Board.find(params[:id])
+    @board = Board.find_by_hashid(params[:id]) || Board.find(params[:id])
+  
+    unless valid_hashid?(params[:id])
+      flash[:alert] = "アクセス権限がありません。"
+      redirect_to boards_path and return
+    end
+  end
+  
+  def valid_hashid?(id)
+    Board.find_by_hashid(id).present?
   end
 
   def set_topic

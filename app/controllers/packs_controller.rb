@@ -8,6 +8,7 @@ class PacksController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update]
   before_action :set_previous_pack, only: [:show]
   before_action :set_next_pack, only: [:show]
+  before_action :correct_admin, only: [:new, :create, :edit, :update, :destroy]
 
 
   def index
@@ -75,5 +76,12 @@ class PacksController < ApplicationController
 
     def set_next_pack
       @next_pack = Pack.where("id > ?", @pack.id).first
+    end
+
+    def correct_admin
+      unless user_signed_in? && current_user.admin?
+        flash[:alert] = "アクセス権限がありません。"
+        redirect_to boards_path
+      end
     end
 end
