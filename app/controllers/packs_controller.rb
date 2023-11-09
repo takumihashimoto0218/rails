@@ -9,10 +9,11 @@ class PacksController < ApplicationController
   before_action :set_previous_pack, only: [:show]
   before_action :set_next_pack, only: [:show]
   before_action :correct_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_q, only: [:index]
 
 
   def index
-    @packs = Pack.all
+    @packs = @q.result(distinct: true)
     @pagy, @packs = pagy(@packs, items: 12)
   end
 
@@ -54,6 +55,10 @@ class PacksController < ApplicationController
   end
 
   private
+    def set_q
+      @q = Pack.ransack(params[:q])
+    end
+
     def pack_params
       params.require(:pack).permit(:title, packdetails_attributes:[:id, :topic_id, :_destroy])
     end
