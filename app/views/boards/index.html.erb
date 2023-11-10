@@ -1,17 +1,21 @@
 <div class="row mt-5">
   <% @boards.each do |board| %>
     <div class="col-lg-4 mb-4">
-      <div class="common-card shadow">
-        <div class="d-flex justify-content-center align-items-center" style="height: 100px; overflow: hidden;">
+      <div class="common-card shadow position-relative">
+        <!-- 画像のコンテナ -->
+        <div class="position-absolute" style="top: 10px; right: 10px; width: 50px; height: 50px; overflow: hidden;">
           <% if board.user&.profile&.profile_image&.attached? %>
-            <%= image_tag board.user.profile.profile_image.variant(resize_to_fill: [100, 100]), alt: "User Icon", class: "rounded-circle" %>
+            <%= image_tag board.user.profile.profile_image.variant(resize_to_fill: [50, 50]), alt: "User Icon", class: "rounded-circle img-fluid", style: "object-fit: cover;" %>
           <% else %>
-            <%= image_tag "default_profile.webp", alt: "Default User Icon", class: "rounded-circle", style: "width: 70px; height: 70px;" %>
+            <%= image_tag "default_person.png", alt: "Default User Icon", class: "rounded-circle img-fluid", style: "object-fit: contain;" %>
           <% end %>
         </div>
+
+        <!-- カードの本体 -->
         <div class="card-body text-center">
-          <h3 class="card-title"><%= board.title %></h3>
-          <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn btn-warning mb-2" %>
+          <!-- タイトルに上のマージンを追加 -->
+          <h3 class="card-title mb-4" style="margin-top: 60px;"><%= board.title %></h3> <!-- 60pxは調整可能 -->
+          <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn btn-warning m-2" %>
           <div>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
@@ -26,6 +30,7 @@
     </div>
   <% end %>
 </div>
+
 <div class="d-flex justify-content-center mt-4">
   <div class="btn-white text-black">
     <%= custom_pagy_nav(@pagy) %>
