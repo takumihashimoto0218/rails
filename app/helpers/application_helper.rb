@@ -13,4 +13,27 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def display_search_form?
+    allowed_paths = [
+      'boards#index',
+      'profiles#show',
+      'packs#index'
+    ]
+
+    allowed_paths.include?("#{controller_name}##{action_name}")
+  end
+
+  def search_form_action
+    case controller_name
+    when 'boards'
+      boards_path
+    when 'profiles'
+      profile_path(current_user.profile) # 現在のユーザーのプロフィールページへのパス
+    when 'packs'
+      packs_path
+    else
+      root_path
+    end
+  end
 end

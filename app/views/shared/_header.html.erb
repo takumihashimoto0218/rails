@@ -41,9 +41,11 @@
         </li>
       <% end %>
     </ul>
-    <%= search_form_for @q,class: "form-inline my-2 my-lg-0" do |f| %>
-      <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search", "aria-label": "Search" %>
-      <%= f.submit "検索", class: "btn btn-outline-success my-2 my-sm-0" %>
+    <% if display_search_form? %>
+      <%= search_form_for @q, url: search_form_action, class: "form-inline my-2 my-lg-0" do |f| %>
+        <%= f.search_field :title_cont, class: "form-control mr-sm-2", placeholder: "Search", "aria-label": "Search" %>
+        <%= f.submit "検索", class: "btn btn-outline-success my-2 my-sm-0" %>
+      <% end %>
     <% end %>
   </div>
 </nav>
