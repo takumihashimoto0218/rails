@@ -7,7 +7,8 @@ class BoardsController < ApplicationController
 
   def index
     @boards = @q.result(distinct: true)
-    @pagy, @boards = pagy(@boards, items: 6)
+    pagy_params = params[:q].present? ? params[:q].permit!.to_h : {}
+    @pagy, @boards = pagy(@boards, items: 6, params: pagy_params)
   end
 
   def show

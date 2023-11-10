@@ -14,7 +14,8 @@ class PacksController < ApplicationController
 
   def index
     @packs = @q.result(distinct: true)
-    @pagy, @packs = pagy(@packs, items: 12)
+    pagy_params = params[:q].present? ? params[:q].permit!.to_h : {}
+    @pagy, @packs = pagy(@packs, items: 12, params: pagy_params)
   end
 
   def show
