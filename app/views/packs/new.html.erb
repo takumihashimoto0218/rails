@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-5">
     <h2>パック登録画面</h2>
-    <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning ml-3" %>
+    <%= link_to "戻る", request.referer || boards_path, class: "btn  ml-3" %>
   </div>
 
   <%= form_with(model: @pack, local: true, data: { turbo: "false" }) do |f| %>
@@ -19,7 +19,7 @@
           </div>
         <% end %>
         <div class="links mb-4">
-          <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn btn-warning' %>
+          <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn ' %>
         </div>
       </div>
 
@@ -30,13 +30,13 @@
           </div>
         <% end %>
         <div class="links mb-4">
-          <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn btn-warning' %>
+          <%= link_to_add_association "+トピックIDを追加", f, :packdetails, class: 'btn ' %>
         </div>
       </div>
     </div>
 
     <div class="form-group mt-4 text-center">
-      <%= f.submit 'パックを登録する', class: 'btn btn-warning btn-lg' %>
+      <%= f.submit 'パックを登録する', class: 'btn  btn-lg' %>
     </div>
   <% end %>
 </div>

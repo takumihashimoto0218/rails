@@ -1,11 +1,11 @@
 <% if current_user.already_favorited?(board) %>
-  <%= button_to board_favorite_path(board), method: :delete, remote: true, data: {"turbolinks" => false}, class: "btn btn-link" do %>
-    <i class="fa-solid fa-heart fa-lg" style="font-size: 2.0em; color: red;"></i>
+  <%= button_to board_favorite_path(board), method: :delete, remote: true, data: {"turbolinks" => false}, class: "btn btn-link", style: "background-color: transparent; border: none;" do %>
+    <i class="fa-solid fa-heart fa-lg" style="font-size: 2.0em; color: #CD5C5C;"></i>
   <% end %>
   <%= board.favorites.count %>
 <% else %>
-  <%= button_to board_favorite_path(board), method: :post, remote: true, data: {"turbolinks" => false}, class: "btn btn-link" do %>
-    <i class="fa-regular fa-heart fa-lg" style="font-size: 2.0em; color: red"></i>
+  <%= button_to board_favorite_path(board), method: :post, remote: true, data: {"turbolinks" => false}, class: "btn btn-link", style: "background-color: transparent; border: none;" do %>
+    <i class="fa-regular fa-heart fa-lg" style="font-size: 2.0em; color: #CD5C5C;"></i>
   <% end %>
   <%= board.favorites.count %>
 <% end %>
