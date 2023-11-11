@@ -4,8 +4,8 @@
       <div class="d-flex justify-content-between align-items-start pt-md-5 pb-md-4">
         <h1><%= @pack.title %></h1>
         <div>
-          <%= link_to "戻る", request.referer || boards_path, class: "btn btn-warning" %>
-         <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn btn-warning">パックからボードを作成</button>
+          <%= link_to "戻る", request.referer || boards_path, class: "btn " %>
+         <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn ">パックからボードを作成</button>
         </div>
       </div>
       <div class="text-left mb-5">
@@ -25,7 +25,7 @@
       <div class="d-flex justify-content-between mt-4 align-items-center">
         <div>
         <% if admin_signed_in? %>
-            <%= link_to "編集", edit_pack_path(@pack), class: "btn btn-warning mr-2" %>
+            <%= link_to "編集", edit_pack_path(@pack), class: "btn  mr-2" %>
             <%= link_to "削除", pack_path(@pack), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-danger mr-2" %>
           <% end %>
         </div>
