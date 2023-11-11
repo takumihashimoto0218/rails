@@ -5,7 +5,7 @@
         <% if @board.user&.profile&.profile_image&.attached? %>
           <%= image_tag @board.user.profile.profile_image.variant(resize: "100x100"), alt: "User Icon", class: "rounded-circle" %>
         <% else %>
-          <%= image_tag "default_profile.webp", alt: "Default User Icon", style: "width: 100px; height: 100px;" %>
+          <%= image_tag "default_person.png", alt: "Default User Icon", style: "width: 100px; height: 100px;" %>
         <% end %>
       </div>
       <div class="text-left mt-3">
