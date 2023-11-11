@@ -45,6 +45,7 @@ gem 'acts_as_list'
 gem 'hashid-rails'
 gem 'rails-i18n'
 gem 'pagy'
+gem 'ransack'
 
 
 gem 'font-awesome-sass'

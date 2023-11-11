@@ -47,5 +47,8 @@ class Pack < ApplicationRecord
       nil
     end
   end
+  def self.ransackable_attributes(auth_object = nil)
+    ["title"]
+  end
 
 end

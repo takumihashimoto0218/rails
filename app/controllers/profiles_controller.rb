@@ -1,9 +1,12 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update]
+  before_action :set_q, only: [:show]
 
   def show
     if @profile
-      @pagy, @boards = pagy(@profile.user.boards, items: 12)
+      @boards = @q.result(distinct: true)
+      pagy_params = params[:q].present? ? params[:q].permit!.to_h : {}
+      @pagy, @boards = pagy(@profile.user.boards, items: 12, params: pagy_params)
     end
   end
 
@@ -38,5 +41,9 @@ class ProfilesController < ApplicationController
 
     def set_profile
       @profile = current_user.profile
+    end
+
+    def set_q
+      @q = current_user.boards.ransack(params[:q])
     end
 end

@@ -1,11 +1,14 @@
 class BoardsController < ApplicationController
+  include Pagy::Backend
   before_action :set_board, only: [:show, :edit, :update, :destroy]
   before_action :set_topic, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_q, only: [:index]
 
   def index
-    @boards = Board.all
-    @pagy, @boards = pagy(@boards, items: 6)
+    @boards = @q.result(distinct: true)
+    pagy_params = params[:q].present? ? params[:q].permit!.to_h : {}
+    @pagy, @boards = pagy(@boards, items: 6, params: pagy_params)
   end
 
   def show
@@ -56,6 +59,10 @@ class BoardsController < ApplicationController
 
   private
 
+  def set_q
+    @q = Board.ransack(params[:q])
+  end
+
   def board_params
     params.require(:board).permit(:title, lists_attributes: [:id, :title, :_destroy,
       tasks_attributes: [:id, :title, :body, :diffculty_level, :is_solo, :_destroy, :position]
@@ -64,13 +71,12 @@ class BoardsController < ApplicationController
 
   def set_board
     @board = Board.find_by_hashid(params[:id]) || Board.find(params[:id])
-  
     unless valid_hashid?(params[:id])
       flash[:alert] = "アクセス権限がありません。"
       redirect_to boards_path and return
     end
   end
-  
+
   def valid_hashid?(id)
     Board.find_by_hashid(id).present?
   end

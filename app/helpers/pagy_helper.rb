@@ -3,8 +3,8 @@ module PagyHelper
 
   def custom_pagy_nav(pagy)
     link = lambda do |n, text = nil|
-      p = { page: n }
-      p.merge!(pagy.vars[:params]) if pagy.vars[:params].is_a?(Hash)
+      # 現在のクエリパラメータを取得して、ページ番号を更新する
+      p = request.query_parameters.merge(page: n)
       active_class = n == pagy.page ? ' active' : ''
       html = link_to((text || n.to_s), url_for(p), class: "page btn#{active_class}")
       html + ' '
@@ -14,6 +14,7 @@ module PagyHelper
     total_pages = pagy.pages
 
     html = +''
+
     from = [1, current_page - 2].max
     to = [total_pages, current_page + 2].min
 
@@ -26,3 +27,4 @@ module PagyHelper
     html.html_safe
   end
 end
+
