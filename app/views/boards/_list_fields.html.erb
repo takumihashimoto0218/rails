@@ -4,14 +4,14 @@
       <%= f.label :list_title, "リストタイトル", class: 'font-weight-bold mb-2' %>
       <%= f.text_field :title, class: 'form-control', placeholder: 'リストのタイトルを入力' %>
     </div>
-    <%= link_to_remove_association "Remove List", f, class: 'btn btn-warning mb-3' %>
+    <%= link_to_remove_association "リストを削除", f, class: 'btn btn-warning mb-3' %>
     <div id="tasks" class="mt-3">
       <%= f.fields_for :tasks do |task| %>
         <%= render "task_fields", f: task %>
       <% end %>
     </div>
     <div class="links mt-3">
-      <%= link_to_add_association "+Taskを追加", f, :tasks, class: 'btn btn-warning' %>
+      <%= link_to_add_association "タスクを追加", f, :tasks, class: 'btn btn-warning' %>
     </div>
   </div>
 </div>
