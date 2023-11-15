@@ -1,6 +1,8 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h4>いいねしたボード一覧</h4>
-  <%= link_to "戻る", request.referer || boards_path, class: "btn " %>
+  <%= link_to request.referer || boards_path, class: "btn " do %>
+    <i class="fa-solid fa-arrow-left"></i>
+  <% end %>
 </div>
 
 <div class="container">

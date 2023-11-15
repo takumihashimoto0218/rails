@@ -4,8 +4,10 @@
       <div class="d-flex justify-content-between align-items-start pt-md-5 pb-md-4">
         <h1><%= @pack.title %></h1>
         <div>
-          <%= link_to "戻る", request.referer || boards_path, class: "btn " %>
-         <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn ">パックからボードを作成</button>
+          <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn ">パックからボードを作成</button>
+          <%= link_to  request.referer || boards_path, class: "btn " do %>
+            <i class="fa-solid fa-arrow-left"></i>
+          <% end %>
         </div>
       </div>
       <div class="text-left mb-5">

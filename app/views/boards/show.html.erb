@@ -1,5 +1,7 @@
 <div class="text-right mb-3">
-  <%= link_to "戻る", request.referer || boards_path, class: "btn " %>
+  <%= link_to request.referer || boards_path, class: "btn " do %>
+    <i class="fa-solid fa-arrow-left"></i>
+  <% end %>
 </div>
 <section class="jumbotron text-center jumbotron-board bg-light">
   <div class="container d-flex align-items-center justify-content-between">

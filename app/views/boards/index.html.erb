@@ -11,8 +11,8 @@
         </div>
 
         <div class="card-body text-center">
-          <h3 class="card-title mb-4" style="margin-top: 60px;"><%= board.title %></h3>
-          <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn boder-black m-2" %>
+          <h3 class="card-title mb-2" style="margin-top: 60px;"><%= board.title %></h3>
+          <%= link_to "詳細", board_path(board.hashid, page: params[:page]), class: "btn boder-black mb-2" %>
           <div>
             <% if user_signed_in? %>
               <p id="favorite_button_<%= board.id %>">
