@@ -29,11 +29,24 @@ module ApplicationHelper
     when 'boards'
       boards_path
     when 'profiles'
-      profile_path(current_user.profile) # 現在のユーザーのプロフィールページへのパス
+      profile_path(current_user.profile)
     when 'packs'
       packs_path
     else
       root_path
+    end
+  end
+
+  def search_placeholder
+    case "#{controller_name}##{action_name}"
+    when 'boards#index'
+      'ボードを検索'
+    when 'profiles#show'
+      'マイボードを検索'
+    when 'packs#index'
+      'パックを検索'
+    else
+      '検索するテキスト'
     end
   end
 end
