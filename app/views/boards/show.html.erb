@@ -15,7 +15,7 @@
       </div>
       <div class="text-left mt-3">
         <h4><%= @board.user&.profile&.name || "Anonymous" %></h4>
-        <p><%= @board.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %></p>
+        <p><%= @board.created_at.strftime('%Y年%m月%d日') %></p>
       </div>
     </div>
     <div class="jumbotron-heading flex-grow-1 text-center">
