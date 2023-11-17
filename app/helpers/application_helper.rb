@@ -18,7 +18,9 @@ module ApplicationHelper
     allowed_paths = [
       'boards#index',
       'profiles#show',
-      'packs#index'
+      'packs#index',
+      'favorites#index',
+      'task_favorites#index'
     ]
 
     allowed_paths.include?("#{controller_name}##{action_name}")
@@ -32,8 +34,12 @@ module ApplicationHelper
       profile_path(current_user.profile)
     when 'packs'
       packs_path
+    when 'favorites'
+      user_favorites_path(current_user)
+    when 'task_favorites'
+      user_task_favorites_path(current_user)
     else
-      root_path
+      boards_path
     end
   end
 
@@ -45,6 +51,10 @@ module ApplicationHelper
       'マイボードを検索'
     when 'packs#index'
       'パックを検索'
+    when 'favorites#index'
+      'ボードを検索する'
+    when 'task_favorites#index'
+      'タスクを検索する'
     else
       '検索するテキスト'
     end
