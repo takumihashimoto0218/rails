@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
     @favorite = @board.favorites.build(user: current_user)
     if @favorite.save
       respond_to do |format|
-        format.html { redirect_to boards_path }
+        format.html { redirect_back fallback_location: boards_path }
         format.js
       end
     end
@@ -21,7 +21,7 @@ class FavoritesController < ApplicationController
     @favorite = @board.favorites.find_by(user: current_user)
     if @favorite.destroy
       respond_to do |format|
-        format.html { redirect_to boards_path }
+        format.html { redirect_back fallback_location: boards_path }
         format.js
       end
     end
