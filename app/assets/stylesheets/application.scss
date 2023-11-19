@@ -15,10 +15,9 @@
  */
  @import "color";
  @import "bootstrap";
- @import "layouts/wrap";
  @import 'font-awesome';
  @import "boards";
-
+ @import "layouts/wrap";
 
  .bg-color {
   background-color: $bg-color;
@@ -36,4 +35,8 @@
 
 .btn:hover {
   border: 1px solid $black;
+}
+
+.nav-link:hover {
+  border-bottom: 1px solid $black;
 }
