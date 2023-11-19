@@ -14,7 +14,7 @@ class Board < ApplicationRecord
     else
       list = board.lists.build(title: pack.title)
       topics.each do |topic|
-        list.tasks.build(title: topic["title"], body: 'Default')
+        list.tasks.build(title: topic["title"], body: topic["body"])
       end
     end
     board
