@@ -3,8 +3,8 @@ class FavoritesController < ApplicationController
   before_action :set_board, only: [:create, :destroy]
 
   def index
-    favorites = Favorite.where(user_id: current_user.id).pluck(:board_id)
-    @favorite_boards = Board.find(favorites)
+    @q = Board.ransack(params[:q])
+    @favorite_boards = @q.result(distinct: true).joins(:favorites).where(favorites: { user_id: current_user.id }).includes(:favorites)
   end
 
   def create
