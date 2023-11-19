@@ -55,7 +55,9 @@
                   <li data-task-id="<%= task.id %>" class="mb-3" data-sortable-update-url="<%= update_task_order_board_path(@board) %>">
                     <div class="card task-card">
                       <div class="card-body bg-white d-flex align-items-center justify-content-between">
-                        <h4 class="flex-grow-1"><%= link_to task.title, task_path(task) %></h4>
+                        <h4 class="flex-grow-1">
+                          <div data-toggle="modal" data-target="#modalForTask<%= task.id %>" class="text-dark cursor-pointer"><%= task.title %></div>
+                        </h4>
                         <% if user_signed_in? %>
                           <div id="favorite_button_<%= task.id %>" class="d-flex align-items-center">
                             <%= render partial: "task_favorites/task_favorites", locals: {task: task} %>
@@ -77,3 +79,24 @@
     </div>
   </div>
 </div>
+
+<% @board.lists.each do |list| %>
+  <% list.tasks.each do |task| %>
+    <div class="modal fade" id="modalForTask<%= task.id %>" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel<%= task.id %>" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="taskModalLabel<%= task.id %>"><%= task.title %></h5>
+            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><%= task.body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+

@@ -4,8 +4,8 @@
       <div class="d-flex justify-content-between align-items-start pt-md-5 pb-md-4">
         <h1><%= @pack.title %></h1>
         <div>
-          <button id="create-board-button" data-pack-id="<%= @pack.id %>" data-page="<%= params[:page] %>" class="btn ">パックからボードを作成</button>
-          <%= link_to  request.referer || boards_path, class: "btn " do %>
+          <%= link_to 'パックからボードを作成', new_board_path(pack_id: @pack.id), class: 'btn' %>
+          <%= link_to request.referer || boards_path, class: "btn " do %>
             <i class="fa-solid fa-arrow-left"></i>
           <% end %>
         </div>
@@ -13,59 +13,77 @@
       <div class="text-left mb-5">
         <h5><%= @pack.created_at.strftime("%Y年%m月%d日 %H:%M") %></h5>
       </div>
+
       <div class="row">
         <% @topics.each do |topic| %>
           <div class="col-md-4 mb-4">
             <div class="common-card shadow bg-light h-100">
               <div class="card-body text-center d-flex align-items-center justify-content-center" style="height: 150px;">
-                <h6 class="card-title mb-0"><%= topic["title"] %></h6>
+                <div data-toggle="modal" data-target="#modalForTopic<%= topic["id"] %>" class="cursor-pointer text-dark">
+                  <h6 class="card-title mb-0"><%= topic["title"] %></h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="modalForTopic<%= topic["id"] %>" tabindex="-1" aria-labelledby="modalForTopicLabel<%= topic["id"] %>" aria-hidden="false">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalForTopicLabel<%= topic["id"] %>"><%= topic["title"] %></h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>企画タイトル: <%= topic["title"] %></p>
+                    <p>企画内容: <%= topic["body"] %></p>
+                    <p>難易度: <%= topic["difficulty_level"] %></p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         <% end %>
       </div>
+
       <div class="d-flex justify-content-between mt-4 align-items-center">
         <div>
-        <% if admin_signed_in? %>
-            <%= link_to "編集", edit_pack_path(@pack), class: "btn  mr-2" %>
+          <% if admin_signed_in? %>
+            <%= link_to "編集", edit_pack_path(@pack), class: "btn mr-2" %>
             <%= link_to "削除", pack_path(@pack), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-danger mr-2" %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-  <%= javascript_include_tag 'create-board' %>
-</div>
-<div class="d-flex justify-content-between w-70">
-  <% if @previous_pack %>
-    <%= link_to pack_path(@previous_pack), style: "text-decoration: none;" do %>
-      <div class="text-center" style="color: black;">
+
+  <div class="d-flex justify-content-between w-70">
+    <% if @previous_pack %>
+      <%= link_to pack_path(@previous_pack), style: "text-decoration: none;" do %>
+        <div class="text-center" style="color: black;">
+          <i class="fa-solid fa-caret-left fa-2x"></i>
+          <br>
+          前のパックへ
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center" style="color: lightgrey;">
         <i class="fa-solid fa-caret-left fa-2x"></i>
         <br>
         前のパックへ
       </div>
     <% end %>
-  <% else %>
-    <div class="text-center" style="color: lightgrey;">
-      <i class="fa-solid fa-caret-left fa-2x"></i>
-      <br>
-      前のパックへ
-    </div>
-  <% end %>
 
-  <% if @next_pack %>
-    <%= link_to pack_path(@next_pack), style: "text-decoration: none;" do %>
-      <div class="text-center" style="color: black;">
+    <% if @next_pack %>
+      <%= link_to pack_path(@next_pack), style: "text-decoration: none;" do %>
+        <div class="text-center" style="color: black;">
+          <i class="fa-solid fa-caret-right fa-2x"></i>
+          <br>
+          次のパックへ
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center" style="color: lightgrey;">
         <i class="fa-solid fa-caret-right fa-2x"></i>
         <br>
         次のパックへ
       </div>
     <% end %>
-  <% else %>
-    <div class="text-center" style="color: lightgrey;">
-      <i class="fa-solid fa-caret-right fa-2x"></i>
-      <br>
-      次のパックへ
-    </div>
-  <% end %>
-</div>
