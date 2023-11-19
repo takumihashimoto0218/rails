@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
     if @profile
       @boards = @q.result(distinct: true)
       pagy_params = params[:q].present? ? params[:q].permit!.to_h : {}
-      @pagy, @boards = pagy(@profile.user.boards, items: 12, params: pagy_params)
+      @pagy, @boards = pagy(@boards, items: 12, params: pagy_params)
     end
   end
 
